@@ -1,0 +1,8 @@
+{
+    "java.project.outputPath": "WEB-INF/classes",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\s-hakutoo\\Downloads\\tomcat9\\lib\\servlet-api.jar",
+        "c:\\Users\\s-hakutoo\\Downloads\\mysql-connector-j-9.7.0\\mysql-connector-j-9.7.0\\mysql-connector-j-9.7.0.jar"
+    ]
+}
