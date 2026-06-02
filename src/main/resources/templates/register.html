@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RDSデータ登録</title>
+</head>
+<body>
+    <h2>新しいユーザーをRDSに登録</h2>
+    
+    <form th:action="@{/register}" method="post" th:object="${userForm}">
+        <ul th:if="${#fields.hasErrors('*')}">
+            <li style="color: red;" th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+
+        <div>
+            <label>名前：</label>
+            <input type="text" th:field="*{name}"> <!--th:field="*{name}"は、HTMLの入力内容をUserFormクラスのnameに入れるための記述-->
+        </div>
+        <br>
+        <div>
+            <label>年齢：</label>
+            <input type="number" th:field="*{age}"> <!--th:field="*{age}"は、HTMLの入力内容をUserFormクラスのageに入れるための記述-->
+        </div>
+        <br>
+        <button type="submit">RDSに登録する</button>
+    </form>
+    <br>
+    <a th:href="@{/list-page}">登録せずに一覧を見る</a>
+</body>
+</html>
