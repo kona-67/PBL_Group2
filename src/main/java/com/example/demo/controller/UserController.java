@@ -23,9 +23,9 @@ public class UserController {
     private UserRepository userRepository; // DB操作ツールを呼び出す
 
     // 1. 登録画面を表示する（リクエストハンドラ）
-    @GetMapping("/register-page")
-    public String showRegisterPage(@ModelAttribute UserForm userForm) {
-        return "register"; // templates/register.html を開く
+    @GetMapping("/test-page")
+    public String showtestPage(@ModelAttribute UserForm userForm) {
+        return "test"; // templates/test.html を開く
     }
 
     // 2. 登録ボタンが押された時の処理
@@ -33,12 +33,12 @@ public class UserController {
     //@ModelAttribute：HTMLの入力内容をUserFormクラスの変数に入れるためのアノテーション
     //BindingResult：@Validatedで起動したアノテーションのエラー情報を格納するための入れ物
     //Model：JavaからHTMLにデータを送る際に使用する倉庫
-    @PostMapping("/register")
-    public String registerUser(@Validated @ModelAttribute UserForm userForm, BindingResult result, Model model) {
+    @PostMapping("/test")
+    public String testUser(@Validated @ModelAttribute UserForm userForm, BindingResult result, Model model) {
         
         // もし入力エラーがあれば登録画面に戻す処理
         if (result.hasErrors()) {
-            return "register"; //HTMLを指定してreturnでそのHTMLページに遷移させる
+            return "test"; //HTMLを指定してreturnでそのHTMLページに遷移させる
         }
 
 
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     // 3. 一覧画面を表示する
-    @GetMapping("/list-page")
+    @GetMapping("/list-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<User> userList = userRepository.findAll();
