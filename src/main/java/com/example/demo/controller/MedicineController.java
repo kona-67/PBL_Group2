@@ -43,7 +43,7 @@ public class MedicineController {
 
 
         // 画面の入力データを、DB保存用のEntityにコピーする
-        Medicine medicine = new Medicine();             //Userインスタンスを作成
+        Medicine medicine = new Medicine();             //Medicineインスタンスを作成
         medicine.setName(medicineForm.getName());   //setter
         medicine.setVolume(medicineForm.getVolume());
         medicine.setUnit(medicineForm.getUnit());
