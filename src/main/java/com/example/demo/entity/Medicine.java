@@ -31,6 +31,7 @@ public class Medicine {
     private int volume;//服用量
     private String unit;//薬の単位
     private String week;//服用する曜日
+    @Column(name = "`time`")//timeが予約語なので念のため紐づけ
     private LocalTime time;//服用する時間
     @Column(name = "start_day")//DBのstart_dayと紐づけ
     private LocalDate startDay;//開始日
