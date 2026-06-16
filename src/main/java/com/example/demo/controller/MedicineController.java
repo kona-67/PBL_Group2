@@ -45,7 +45,12 @@ public class MedicineController {
         // 画面の入力データを、DB保存用のEntityにコピーする
         Medicine medicine = new Medicine();             //Userインスタンスを作成
         medicine.setName(medicineForm.getName());   //setter
-        medicine.setAge(medicineForm.getAge());
+        medicine.setVolume(medicineForm.getVolume());
+        medicine.setUnit(medicineForm.getUnit());
+        medicine.setWeek(medicineForm.getWeek());
+        medicine.setTime(medicineForm.getTime());
+        medicine.setStartDay(medicineForm.getStartDay());
+        medicine.setFinishDay(medicineForm.getFinishDay());
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         medicineRepository.save(medicine);
