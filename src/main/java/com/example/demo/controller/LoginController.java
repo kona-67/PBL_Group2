@@ -17,9 +17,22 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    
     // 1. ログイン画面を表示する
     @GetMapping("/user/login")
     public String showLoginPage() {
+        
+        // 💡 一時的なテスト用：もしDBに test@example.com がいなければ、強制的に1件作成する
+        if (userRepository.findByEmail("test@example.com").isEmpty()) {
+            User testUser = new User();
+            testUser.setEmail("test@example.com");
+            testUser.setPassword("password123");
+            testUser.setName("テスト太郎");
+            testUser.setAge(20);
+            userRepository.save(testUser); // データベースに保存！
+            System.out.println("【テスト用】test@example.com をデータベースに自動登録しました！");
+        }
+
         return "login"; 
     }
 
@@ -42,6 +55,8 @@ public class LoginController {
             model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
             return "login"; 
         }
+
+        
     }
 
     // 3. 新規登録画面を表示する
@@ -81,3 +96,5 @@ public class LoginController {
         public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
     }
 }
+
+
