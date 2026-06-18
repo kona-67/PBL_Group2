@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 //この引数に記載しているファイル（テーブル）名と主キーの型をもとに、DB操作のためのSQL文を自動で生成してくれる。
 @Repository //このクラスがDB操作用のJavaファイルであることを示すアノテーション。
 public interface UserRepository extends JpaRepository<User, Integer> {
+    // メールアドレスでユーザーを検索するためのメソッドを追加
+    java.util.Optional<User> findByEmail(String email);
 }
