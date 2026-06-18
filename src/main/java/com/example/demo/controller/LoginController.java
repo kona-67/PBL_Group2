@@ -24,28 +24,38 @@ public class LoginController {
         return "login"; 
     }
 
-    // 2. ログインボタンが押されたときの処理 💡ここを本物の照合ロジックに書き換えました！
+    // 2. ログインボタンが押されたときの処理
     @PostMapping("/user/login")
     public String loginUser(@ModelAttribute LoginForm form, Model model) {
-        System.out.println("ログイン試行中: " + form.getUsername());
+        System.out.println("=== ログインチェック開始 ===");
+        System.out.println("画面から入力されたメール: " + form.getUsername());
+        System.out.println("画面から入力されたパスワード: " + form.getPassword());
         
-        // ① 入力されたメールアドレス（username）でMySQLを検索する
         Optional<User> userOpt = userRepository.findByEmail(form.getUsername());
 
-        // ② ユーザーがDBに存在し、かつパスワードも一致するかチェック
-        if (userOpt.isPresent() && userOpt.get().getPassword().equals(form.getPassword())) {
-            System.out.println("ログイン成功！ホーム画面へリダイレクトします。");
-            // ⭕ 一致したら、他の人が作ったホーム画面（/home）へジャンプ
-            return "redirect:/home";
+        if (userOpt.isPresent()) {
+            User dbUser = userOpt.get();
+            System.out.println("DBから見つかったユーザーのメール: " + dbUser.getEmail());
+            System.out.println("DBに登録されているパスワード: " + dbUser.getPasswordHash()); // 💡 ここにid変更が反映されてるかチェック
+            
+            // 実際に比較してみる
+            if (dbUser.getPasswordHash().equals(form.getPassword())) {
+                System.out.println("【判定】一致しました！ログイン成功！");
+                return "redirect:/home";
+            } else {
+                System.out.println("【判定】パスワードが一致しませんでした。");
+            }
         } else {
-            System.out.println("ログイン失敗：メールアドレスかパスワードが違います。");
-            // ❌ 間違っていたら、エラーメッセージを画面に渡してログイン画面に戻す
-            model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
-            return "login"; 
+            System.out.println("【判定】このメールアドレスのユーザーはDBにいません。");
         }
 
-        
+        model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
+        return "login"; 
     }
+
+ 
+
+        
 
     // 3. 新規登録画面を表示する
     @GetMapping("/user/register")
@@ -53,37 +63,31 @@ public class LoginController {
         return "register";
     }
 
-    // 4. 新規登録ボタンが押されたときの処理 💡ここを本物の登録ロジックに書き換えます！
+       // 4. 新規登録ボタンが押されたときの処理
     @PostMapping("/user/register")
     public String registerUser(@ModelAttribute RegisterForm form, Model model) {
         System.out.println("新規登録処理を開始: " + form.getEmail());
 
-        // ① パスワードと確認用パスワードが一致しているかチェック
         if (!form.getPassword().equals(form.getPasswordConfirm())) {
-            System.out.println("新規登録失敗：パスワードが一致しません。");
-            // ❌ 違っていれば、エラーメッセージを画面に渡して登録画面に戻す
             model.addAttribute("registerError", "パスワードが一致しません。");
             return "register";
         }
 
-        // ② 💡【応用】すでに同じメールアドレスが登録されていないかチェック
         if (userRepository.findByEmail(form.getEmail()).isPresent()) {
-            System.out.println("新規登録失敗：既に登録されているメールアドレスです。");
             model.addAttribute("registerError", "このメールアドレスは既に登録されています。");
             return "register";
         }
 
-        // ③ 新しいユーザーのデータを作ってMySQLに保存する
+        // 💡 新しい設計に合わせてデータをセットします
         User newUser = new User();
         newUser.setEmail(form.getEmail());
-        newUser.setPassword(form.getPassword());
-        newUser.setName("新規ユーザー"); // ※HTMLに名前入力欄があれば form.getName() 等に変えられます
-        newUser.setAge(20);             // ※HTMLに年齢入力欄があれば form.getAge() 等に変えられます
+        newUser.setPasswordHash(form.getPassword()); // 💡 passwordHashに保存
+        newUser.setDisplayName("新規ユーザー");        // 💡 displayNameに保存
+        // ※ createdAt は自動で入るので書かなくてOK！
 
-        userRepository.save(newUser); // 🎯 MySQLへ保存！
+        userRepository.save(newUser);
         System.out.println("新規登録成功！ログイン画面へ移動します。");
 
-        // ⭕ 登録できたら、次はログインしてもらうためにログイン画面へジャンプ
         return "redirect:/user/login";
     }
 
