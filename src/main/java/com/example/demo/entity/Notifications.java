@@ -21,11 +21,11 @@ public class Notifications {
     @Id //この引数は主キーであることを定義するアノテーション。IDは主キーとして定義する。
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動連番(AI)idはデータを作る度に連番でIDが割り振られる
     @Column(name = "id") //DBのidと紐づけ
-    private Integer notificationid; //通知のID autoIncrement 主キー
+    private Integer notificationId; //通知のID autoIncrement 主キー
 
     @ManyToOne//一つのUserに対して多数のMedicineが紐づく
     @JoinColumn(name = "user_id")//DBのuser_idと紐づけ
-    private Integer user;//Userオブジェクトの取得
+    private User user;//Userオブジェクトの取得
 
     @Column(name = "medicine_name")//DBのmedicine_nameと紐づけ
     private String name;//薬名
