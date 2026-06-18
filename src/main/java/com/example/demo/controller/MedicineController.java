@@ -47,7 +47,11 @@ public class MedicineController {
         medicine.setName(medicineForm.getName());   //setter
         medicine.setVolume(medicineForm.getVolume());
         medicine.setUnit(medicineForm.getUnit());
-        medicine.setWeek(medicineForm.getWeek());
+        if(medicineForm.getWeek() == null){//入力値なしの場合曜日指定なしとみなす
+            medicine.setWeek("曜日指定なし");
+        }else{
+            medicine.setWeek(medicineForm.getWeek());
+        }
         medicine.setTime(medicineForm.getTime());
         medicine.setStartDay(medicineForm.getStartDay());
         medicine.setFinishDay(medicineForm.getFinishDay());
