@@ -34,7 +34,7 @@ public class UserController {
     //BindingResult：@Validatedで起動したアノテーションのエラー情報を格納するための入れ物
     //Model：JavaからHTMLにデータを送る際に使用する倉庫
     @PostMapping("/test")
-    public String addUser(@Validated @ModelAttribute UserForm userForm, BindingResult result, Model model) {
+    public String testUser(@Validated @ModelAttribute UserForm userForm, BindingResult result, Model model) {
         
         // もし入力エラーがあれば登録画面に戻す処理
         if (result.hasErrors()) {
@@ -49,21 +49,19 @@ public class UserController {
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
-        
-        // 登録が終わったら、ホーム画面にリダイレクト（移動）する
-        return "redirect:/home-page";
+
+        // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
+        return "redirect:/list-page";
     }
 
-    /* ★後で"ホーム表示"に変更★ 
     // 3. 一覧画面を表示する
-    @GetMapping("/home-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
+    @GetMapping("/list-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<User> userList = userRepository.findAll();
 
         // 画面（HTML）にデータを渡す
         model.addAttribute("userList", userList);
-        return "home"; // templates/home.html を開く
+        return "list"; // templates/list.html を開く
     }
-    */
 }
