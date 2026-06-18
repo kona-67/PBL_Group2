@@ -53,7 +53,6 @@ public class LoginController {
         return "register";
     }
 
-    // 4. 新規登録ボタンが押されたときの処理
     // 4. 新規登録ボタンが押されたときの処理 💡ここを本物の登録ロジックに書き換えます！
     @PostMapping("/user/register")
     public String registerUser(@ModelAttribute RegisterForm form, Model model) {
