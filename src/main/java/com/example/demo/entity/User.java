@@ -1,5 +1,3 @@
-//登録するユーザ情報を定義しているファイル。DBのテーブル作成に使うJavaファイル。
-
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
@@ -7,17 +5,22 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-//DBのテーブルを作成する際はClassで生成する。
-@Entity                //このクラスがDBのテーブル定義に使うクラスであるということを示している。
-@Table(name = "users") // RDSの「users」テーブルと紐づきます
-@Data                  //getter・setterを書かずに利用できるようにするためのアノテーション
+@Entity
+@Table(name = "users")
 public class User {
-    @Id                                                 // この引数は主キーであることを定義するアノテーション。IDは主キーとして定義する。
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動連番(AI)idはデータを作る度に連番でIDが割り振られる
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
-    private Integer age;
+    private String email;
+    private String password;
+
+    // ゲッターとセッター（JPAがデータを読み書きするのに必須です）
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }
