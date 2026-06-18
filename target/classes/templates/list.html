@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>登録済み薬一覧</title>
+    <link rel="stylesheet" href="../static/css">
 </head>
 <body>
     <h2>現在登録されている薬一覧</h2>
@@ -15,7 +16,7 @@
                 <th id="unit">単位</th>
                 <th id="period">服用期間</th>
                 <th id="timing">服用タイミング</th>
-                <th id="remarks">備考欄</th>
+                <!-- <th id="remarks">備考欄</th> -->
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,10 @@
     </table>
 
     <br>
-    <a th:href="@{/test-page}">新しいユーザーを登録する</a>
+    <button id="moveAddBtn">薬の新規登録へ移動</button>
+    <button id="moveHistoryBtn">薬の履歴へ移動</button>
+    <button id="moveHomeBtn">ホームへ移動</button>
+
+    <script src="../static/js"></script>
 </body>
 </html>
