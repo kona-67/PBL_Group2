@@ -44,8 +44,8 @@ public class UserController {
 
         // 画面の入力データを、DB保存用のEntityにコピーする
         User user = new User();             //Userインスタンスを作成
-        user.setName(userForm.getName());   //setter
-        user.setAge(userForm.getAge());
+        user.setDisplayName(userForm.getName()); // 💡 nameの代わりにdisplayNameにセットする
+        // ※ ageの行はエラーになるので思い切って削除する
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
