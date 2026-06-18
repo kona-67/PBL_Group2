@@ -17,6 +17,7 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    
     // 1. ログイン画面を表示する
     @GetMapping("/user/login")
     public String showLoginPage() {
@@ -42,6 +43,8 @@ public class LoginController {
             model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
             return "login"; 
         }
+
+        
     }
 
     // 3. 新規登録画面を表示する
@@ -51,10 +54,38 @@ public class LoginController {
     }
 
     // 4. 新規登録ボタンが押されたときの処理
+    // 4. 新規登録ボタンが押されたときの処理 💡ここを本物の登録ロジックに書き換えます！
     @PostMapping("/user/register")
     public String registerUser(@ModelAttribute RegisterForm form, Model model) {
-        System.out.println("新規登録ボタンが押されました: " + form.getEmail());
-        return "redirect:/home";
+        System.out.println("新規登録処理を開始: " + form.getEmail());
+
+        // ① パスワードと確認用パスワードが一致しているかチェック
+        if (!form.getPassword().equals(form.getPasswordConfirm())) {
+            System.out.println("新規登録失敗：パスワードが一致しません。");
+            // ❌ 違っていれば、エラーメッセージを画面に渡して登録画面に戻す
+            model.addAttribute("registerError", "パスワードが一致しません。");
+            return "register";
+        }
+
+        // ② 💡【応用】すでに同じメールアドレスが登録されていないかチェック
+        if (userRepository.findByEmail(form.getEmail()).isPresent()) {
+            System.out.println("新規登録失敗：既に登録されているメールアドレスです。");
+            model.addAttribute("registerError", "このメールアドレスは既に登録されています。");
+            return "register";
+        }
+
+        // ③ 新しいユーザーのデータを作ってMySQLに保存する
+        User newUser = new User();
+        newUser.setEmail(form.getEmail());
+        newUser.setPassword(form.getPassword());
+        newUser.setName("新規ユーザー"); // ※HTMLに名前入力欄があれば form.getName() 等に変えられます
+        newUser.setAge(20);             // ※HTMLに年齢入力欄があれば form.getAge() 等に変えられます
+
+        userRepository.save(newUser); // 🎯 MySQLへ保存！
+        System.out.println("新規登録成功！ログイン画面へ移動します。");
+
+        // ⭕ 登録できたら、次はログインしてもらうためにログイン画面へジャンプ
+        return "redirect:/user/login";
     }
 
     // ==========================================
@@ -81,3 +112,5 @@ public class LoginController {
         public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
     }
 }
+
+
