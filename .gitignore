@@ -1,2 +1,17 @@
+target/
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.oracle.com/technetwork/java/javase/community/errorhandling-141999.html#better
+hs_err_pid*
+
+# README.me (ignored as per existing file)
 README.me
 メンバー・役割表
