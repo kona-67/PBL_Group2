@@ -1,0 +1,25 @@
+/*login.html*/
+/*フッダー*/
+.login h2{
+    text-align: center;
+}
+
+.login .email-area{
+    text-align: center;
+}
+
+.login #email{
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.login .password-area{
+    text-align: center;
+}
+
+.login #password{
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
+}
