@@ -18,6 +18,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動連番(AI)idはデータを作る度に連番でIDが割り振られる
     private Integer id;
 
+    private String email;
+    private String password;
     private String name;
-    private Integer age;
+    private Integer age; // 💡追加：UserControllerが求めている「年齢」の変数
 }
