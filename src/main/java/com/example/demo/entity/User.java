@@ -7,27 +7,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-<<<<<<< HEAD
 import lombok.Data;
-=======
 import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
->>>>>>> origin/main
+
 
 //DBのテーブルを作成する際はClassで生成する。
 @Entity                //このクラスがDBのテーブル定義に使うクラスであるということを示している。
 @Table(name = "users") // RDSの「users」テーブルと紐づきます
 @Data                  //getter・setterを書かずに利用できるようにするためのアノテーション
 public class User {
-<<<<<<< HEAD
+
     @Id                                                 // この引数は主キーであることを定義するアノテーション。IDは主キーとして定義する。
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動連番(AI)idはデータを作る度に連番でIDが割り振られる
     private Integer id;
 
     private String name;
     private Integer age;
-=======
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") // 💡 データベース上の列名を「id」にします
@@ -67,5 +65,4 @@ public class User {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
->>>>>>> origin/main
 }
