@@ -50,10 +50,13 @@ public class UserController {
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
 
+        /* 
         // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
         return "redirect:/list-page";
+         */
     }
 
+    /* 
     // 3. 一覧画面を表示する
     @GetMapping("/list-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
@@ -64,4 +67,5 @@ public class UserController {
         model.addAttribute("userList", userList);
         return "list"; // templates/list.html を開く
     }
+    */
 }
