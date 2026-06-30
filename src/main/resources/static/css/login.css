@@ -51,7 +51,7 @@
     
 }
 
-.login .sendBtn{
+.login #sendBtn{
     height: 50px;
     width: 15vw;
 }

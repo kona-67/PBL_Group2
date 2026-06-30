@@ -70,9 +70,9 @@
 /*薬登録ボタンテキスト*/
 .home .add-Btn .text {
     position: absolute;
-    top: 17%;
-    left: 4%;
-    font-size: 25px;
+    top: 19%;
+    left: 3%;
+    font-size: 17px;
 }
 
 /*薬登録ボタン*/
@@ -89,9 +89,9 @@
 /*服用履歴ボタンテキスト*/
 .home .history-Btn .text {
     position: absolute;
-    top: 47%;
-    left: 4%;
-    font-size: 25px;
+    top: 49%;
+    left: 3%;
+    font-size: 17px;
 }
 
 /*服用履歴ボタン*/
