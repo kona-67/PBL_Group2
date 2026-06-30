@@ -16,12 +16,12 @@
         </div>
 
         <div class="add-Btn">
-            <p class="text">テキスト</p>
+            <p class="text">新規薬登録はこちら</p>
             <button class="Btn" id="moveAddBtn">薬登録画面</button>
         </div>
 
         <div class="history-Btn">
-            <p class="text">テキスト</p>
+            <p class="text">服用理履歴はこちら</p>
             <button class="Btn" id="moveHistoryBtn">服用履歴画面</button>
         </div>
 
@@ -34,40 +34,20 @@
                         <th>服用タイミング</th>
                         <th>開始日</th>
                         <th>終了日</th>
-                        <th>画像</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr th:each="medicine : ${medicineList}">
+                        <td th:text="${medicine.name}"></td>
+                        <td th:text="${medicine.medicine.volume} + ' ' + ${medicine.unit}"></td>
+                        <td th:text="${medicine.week} + '、' + ${medicine.time}"></td>
+                        <td th:text="${medicine.startDay}"></td>
+                        <td th:text="${medicine.finishDay}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <script src="../static/js/app.js"></script>
+    <script src="../static/js/app.js"></script>
     </body>
 </html>

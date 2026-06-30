@@ -1,0 +1,105 @@
+/*body{
+    background:#f5f7fa;
+}*/
+
+/*入力エリア*/
+.add .form-area{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 50px;
+}
+
+/*左側のエリア*/
+
+/*右側のエリア*/
+
+/*h1タグ*/
+.add h1{
+    text-align: center;
+}
+
+/*薬名入力エリア*/
+.add #medicine-name{
+    width: 300px;
+    height: 40px;
+}
+
+/*服用量入力エリア, 単位入力*/
+.add .medicine-input-area{
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+/*服用量のテキストエリア*/
+.add #medicine-volume{
+    width: 100px;
+}
+
+/*単位の入力エリア*/
+.add #unit{
+    width: 80px;
+}
+
+/*期間入力エリア*/
+.add .data-area{
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+}
+
+
+.add .startday,
+.add .finishday {
+    display: flex;
+    flex-direction: column;
+}
+
+/*曜日チェックボックス*/
+.add .week-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.add .week-area label{
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.add .week-area input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 8px;
+}
+
+/*時間入力*/
+.add .time{
+    margin-top: 10px;
+}
+
+.add .time label{
+    font-size: 20px;
+}
+
+.add .time #time-area{
+    width: 70px;
+    height: 30px;
+}
+
+/*登録ボタン*/
+.add .btn-area{
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.add #btn{
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
