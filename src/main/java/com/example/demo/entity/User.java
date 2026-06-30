@@ -26,10 +26,6 @@ public class User {
     private String name;
     private Integer age;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id") // 💡 データベース上の列名を「id」にします
-    private Integer Id;
 
     private String email;
 
