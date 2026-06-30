@@ -19,17 +19,14 @@ import jakarta.persistence.PrePersist;
 @Data                  //getter・setterを書かずに利用できるようにするためのアノテーション
 public class User {
 
-    @Id                                                 // この引数は主キーであることを定義するアノテーション。IDは主キーとして定義する。
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動連番(AI)idはデータを作る度に連番でIDが割り振られる
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id; 
 
     private String name;
     private Integer age;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id") // 💡 データベース上の列名を「id」にします
-    private Integer Id;
 
     private String email;
 
@@ -51,8 +48,8 @@ public class User {
     // ==========================================
     // ゲッターとセッター（名前が変わったので作り直しました）
     // ==========================================
-    public Integer getUserId() { return Id; }
-    public void setUserId(Integer Id) { this.Id = Id; }
+    public Integer getUserId() { return id; }
+    public void setUserId(Integer id) { this.id = id; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
