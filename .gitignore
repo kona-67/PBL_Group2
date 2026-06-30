@@ -7,3 +7,4 @@ README.me
 .factorypath
 .vscode/
 WEB-INF/
+target/
