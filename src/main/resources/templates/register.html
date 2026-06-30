@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>新規登録</title>
-        <link rel="stylesheet" href="../static/css">
+        <link rel="stylesheet" href="../static/css/register.css">
     </head>
 
     <body class="region">
         <h2>新規登録</h2>
 
         <form th:action="@{/user/register}" method="post">
-        
+
             <div class="email-area">
                 <label for="email">メールアドレス:</label>
                 <input type="email" id="email" name="email" placeholder="example@example.com">
@@ -34,7 +34,7 @@
             <div class="sendBtn-area">
                 <button type="submit" class="sendBtn">送信</button>
             </div>
-        
+
         </form>
     </body>
 </html>
