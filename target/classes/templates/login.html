@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン</title>
-    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
 
 <body class="login">
     <h2>ログイン</h2>
 
-    <form th:action="@{/login}" method="post">
+    <form action="/user/login" method="post">
 
         <div th:if="${loginError}" style="color: red; margin-bottom: 15px;">
             <p th:text="${loginError}"></p>
@@ -36,10 +36,10 @@
     </form>
 
     <p>
-        <a th:href="@{/register.html}">新規登録はこちら</a>
+        <a href="register.html">新規登録はこちら</a>
     </p>
 
-    <script th:src="@{/js/login.js}"></script>
+    <script src="../static/js/app.js"></script>
 
 </body>
 </html>
