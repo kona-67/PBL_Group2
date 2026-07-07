@@ -1,5 +1,5 @@
 
-package main.java.com.example.demo.controller;
+package com.example.demo.controller;
 
 import com.example.demo.entity.Medicine;
 import com.example.demo.form.MedicineForm;
@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;;
 
 @Controller
 public class EditController {

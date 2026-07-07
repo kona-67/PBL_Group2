@@ -60,7 +60,7 @@ public class UserController {
     }
 
     // 3. 一覧画面を表示する
-    @GetMapping("/list-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
+    @GetMapping("/list-page1")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<User> userList = userRepository.findAll();
