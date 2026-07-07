@@ -7,10 +7,6 @@
     margin-top: 50px;
 }
 
-/*左側のエリア*/
-
-/*右側のエリア*/
-
 /*h1タグ*/
 .edit h1{
     text-align: center;
@@ -46,6 +42,7 @@
     display: flex;
     justify-content: left;
     gap: 10px;
+    flex-direction: column;
 }
 
 
@@ -61,6 +58,7 @@
     flex-direction: column;
     gap: 4px;
 }
+
 
 .edit .week-area label{
     font-size: 22px;
@@ -87,10 +85,31 @@
 }
 
 /*ボタンエリア*/
-.edit .btn-area .edit-btn-area{
-    margin-top: 20px;
+/*更新、削除ボタンエリア*/
+.edit .edit-btn-area{
+    text-align: center;
+
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 350px;
+    display: flex;
+    align-items: center;
+    gap: 10px;          /* ボタン同士の間隔 */
+    flex-wrap: nowrap;  /* 改行しない */
 }
 
+/*削除、更新ボタン*/
+.edit .update-btn,
+.edit .delete-btn{
+    width: 120px;
+    height: 40px;
+    white-space: nowrap; /* ボタン内の文字も改行しない */
+}
+
+/*一覧に戻るボタンエリア*/
 .edit .btn-area .list-btn-area{
-    margin-top: 20px;
+    text-align: center;
+
+    margin-top: 30px;
+    margin-left: 350px;
 }
