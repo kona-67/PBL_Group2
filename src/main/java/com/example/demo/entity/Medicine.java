@@ -27,7 +27,7 @@ public class Medicine {
     @ManyToOne//一つのUserに対して多数のMedicineが紐づく
     @JoinColumn(name = "user_id")//DBのuser_idと紐づけ
     private User user;//Userオブジェクトの取得
-    private String name;//薬名
+    private String medicine_name;//薬名
     private int volume;//服用量
     private String unit;//薬の単位
     private String week;//服用する曜日
