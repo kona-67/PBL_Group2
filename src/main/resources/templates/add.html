@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -78,4 +79,104 @@
         </div>
 
     </body>
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>薬登録</title>
+
+        <link rel="stylesheet" th:href="@{/css/add.css}">
+    </head>
+
+
+    <body class="add">
+
+        <form th:action="@{/add}" method="post" th:object="${medicineForm}">
+            <div class="form-area">
+                <div class="left-area">
+                    <div class="medicine-name-area">
+                        <input type="text" id="medicine-name" placeholder="薬名" th:field="*{name}">
+                    </div>
+
+
+                    <div class="medicine-input-area">
+                        <input type="text" id="medicine-volume" placeholder="服用量" th:field="*{volume}">
+                        <input type="text" id="unit" placeholder="単位" th:field="*{unit}">
+                    </div>
+
+                    <div class="data-area">
+                        <div class="startday">
+                            <label for="start-date">開始日</label>
+                            <input type="date" id="start-date" th:field="*{startDay}">
+                        </div>
+
+                        <div>
+                            <p>から</p>
+                        </div>
+
+                        <div class="finishday">
+                            <label for="finish-date">終了日</label>
+                            <input type="date" id="finish-date" th:field="*{finishDay}">
+                        </div>
+
+                        <div>
+                            <p>まで</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="right-area">
+                    <div class="week-area">
+                        <label>
+                            <input type="checkbox" name="day" value="月" th:field="*{week}">
+                            月曜日
+                        </label>
+                        
+                        <label>
+                            <input type="checkbox" name="day" value="火" th:field="*{week}">
+                            火曜日
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="day" value="水" th:field="*{week}">
+                            水曜日
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="day" value="木" th:field="*{week}">
+                            木曜日
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="day" value="金" th:field="*{week}">
+                            金曜日
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="day" value="土" th:field="*{week}">
+                            土曜日
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="day" value="日" th:field="*{week}">
+                            日曜日
+                        </label>
+                    </div>
+
+
+                    <div class="time">
+                        <label for="time">服用時間</label>
+                        <input type="time" id="time" th:field="*{time}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-area">
+                <button type="submit" id="btn">登録</button>
+            </div>
+        </form>
+
+    </body>
+>>>>>>> 0f06c9aa12fed27cc64ffe2541ac6335ceb1816a
 </html>

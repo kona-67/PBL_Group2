@@ -1,0 +1,148 @@
+/*home.html*/
+
+
+/*top-area------------------------*/
+.top-area{
+    position: relative;
+    height: 80px;
+}
+
+
+/*h1タグ*/
+.home .top-area h1{
+    text-align: center;
+    margin: 0;
+    line-height: 80px;
+}
+
+/*ログイン画面ボタンテキスト*/
+.home .login-Btn .text {
+    position: absolute;
+    right: 5%;
+    top: 30%;
+    transform: translateY(-50%);
+    
+    min-width: 80px;
+    max-width: 250px;
+
+    min-height: 30px;
+    max-height: 80px;
+
+    font-size: 10px;
+}
+
+/*ログイン画面ボタン*/
+.home .login-Btn .Btn{
+    position: absolute;
+    right: 5%;
+    top: 70%;
+    transform: translateY(-50%);
+
+    min-width: 80px;
+    max-width: 250px;
+
+    min-height: 30px;
+    max-height: 80px;
+
+    font-size: 9px;
+}
+
+/*top-area終わり*/
+
+
+
+/*線*/
+.home .line{
+    width: 90%;
+    max-width: none;
+    min-width: 100px;
+    height: 2px;
+    background: black;
+    margin: 0px auto;
+}
+
+/*main-area------------------------*/
+
+.main-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+    padding: 0 30px;
+    gap: 50px;
+}
+
+/*left-area----------------*/
+
+.home .left-area{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/*薬登録ボタンテキスト*/
+.home .add-Btn .text {
+    font-size: 17px;
+}
+
+/*薬登録ボタン*/
+.home .add-Btn .Btn {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+}
+
+/*服用履歴ボタンテキスト*/
+.home .history-Btn .text {
+    font-size: 17px;
+}
+
+/*服用履歴ボタン*/
+.home .history-Btn .Btn {
+
+
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+}
+
+/*left-area終わり*/
+
+/*table-box---------------*/
+
+/*リスト*/
+.home .table-box {
+    margin-top: 10px;
+    overflow: auto;
+    border: 2px solid black;
+
+    width: 70%;
+    border-collapse: collapse;
+    height: 350px;
+    overflow-y: auto;
+
+}
+
+.home table {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+
+    width: 100%;
+    border-collapse: collapse;
+
+    margin-left: auto;
+    white-space: nowrap;
+
+}
+
+.home th,td {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+
+.home th {
+    background-color: #f0f0f0;
+}
+/*table-area終わり*/
+/*bottom-area終わり*/

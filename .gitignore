@@ -21,3 +21,7 @@ README.me
 .settings/
 .factorypath
 .vscode/
+<<<<<<< HEAD
+=======
+WEB-INF/
+>>>>>>> 0f06c9aa12fed27cc64ffe2541ac6335ceb1816a
