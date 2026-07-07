@@ -1,91 +1,118 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // 💡 追記
+import org.springframework.security.crypto.password.PasswordEncoder; // 💡 追記
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession; // 💡 追記：セッションを使うために必要
 
 @Controller
 public class LoginController {
 
-    // 💡 さっき作った UserRepository を自動で読み込んで使えるようにします
     @Autowired
     private UserRepository userRepository;
 
-    
+    // 💡 パスワードの暗号化・照合を行うためのエンコーダーを定義します
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    // ==========================================
     // 1. ログイン画面を表示する
+    // ==========================================
     @GetMapping("/user/login")
     public String showLoginPage() {
         return "login"; 
     }
 
-    // 2. ログインボタンが押されたときの処理 💡ここを本物の照合ロジックに書き換えました！
+    /* */
+    // ==========================================
+    // 2. ログインボタンが押されたときの処理
+    // ==========================================
     @PostMapping("/user/login")
-    public String loginUser(@ModelAttribute LoginForm form, Model model) {
-        System.out.println("ログイン試行中: " + form.getUsername());
+    public String loginUser(@ModelAttribute LoginForm form, Model model, HttpSession session) {
+        System.out.println("=== ログインチェック開始 ===");
+        System.out.println("画面から入力されたメール: " + form.getUsername());
         
-        // ① 入力されたメールアドレス（username）でMySQLを検索する
         Optional<User> userOpt = userRepository.findByEmail(form.getUsername());
 
-        // ② ユーザーがDBに存在し、かつパスワードも一致するかチェック
-        if (userOpt.isPresent() && userOpt.get().getPassword().equals(form.getPassword())) {
-            System.out.println("ログイン成功！ホーム画面へリダイレクトします。");
-            // ⭕ 一致したら、他の人が作ったホーム画面（/home）へジャンプ
-            return "redirect:/home";
+        if (userOpt.isPresent()) {
+            User dbUser = userOpt.get();
+            System.out.println("DBから見つかったユーザーのメール: " + dbUser.getEmail());
+            
+            // 💡 修正：ハッシュ化されたパスワードと一致するかチェック（matchesを使用）
+            if (passwordEncoder.matches(form.getPassword(), dbUser.getPasswordHash())) {
+                System.out.println("【判定】一致しました！ログイン成功！");
+                
+                // セッションにログインユーザーの情報を保存
+                session.setAttribute("user", dbUser);
+                
+                return "redirect:/home";
+            } else {
+                System.out.println("【判定】パスवायरमेंटが一致しませんでした。");
+            }
         } else {
-            System.out.println("ログイン失敗：メールアドレスかパスワードが違います。");
-            // ❌ 間違っていたら、エラーメッセージを画面に渡してログイン画面に戻す
-            model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
-            return "login"; 
+            System.out.println("【判定】このメールアドレスのユーザーはDBにいません。");
         }
 
-        
+        model.addAttribute("loginError", "メールアドレスまたはパスワードが違います。");
+        return "login"; 
     }
 
+    // ==========================================
     // 3. 新規登録画面を表示する
+    // ==========================================
     @GetMapping("/user/register")
     public String showRegisterPage() {
         return "register";
     }
 
-    // 4. 新規登録ボタンが押されたときの処理
-    // 4. 新規登録ボタンが押されたときの処理 💡ここを本物の登録ロジックに書き換えます！
+    // ==========================================
+    // 4. 新規登録ボタンが押されたときの処理（★最終完成版！）
+    // ==========================================
     @PostMapping("/user/register")
-    public String registerUser(@ModelAttribute RegisterForm form, Model model) {
-        System.out.println("新規登録処理を開始: " + form.getEmail());
+    public String registerUser(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            HttpSession session,
+            Model model) {
 
-        // ① パスワードと確認用パスワードが一致しているかチェック
-        if (!form.getPassword().equals(form.getPasswordConfirm())) {
-            System.out.println("新規登録失敗：パスワードが一致しません。");
-            // ❌ 違っていれば、エラーメッセージを画面に渡して登録画面に戻す
-            model.addAttribute("registerError", "パスワードが一致しません。");
-            return "register";
-        }
+        System.out.println("=== 新規登録処理を開始（確定版） ===");
+        System.out.println("登録メールアドレス: " + email);
+        System.out.println("届いたパスワード: " + password);
 
-        // ② 💡【応用】すでに同じメールアドレスが登録されていないかチェック
-        if (userRepository.findByEmail(form.getEmail()).isPresent()) {
-            System.out.println("新規登録失敗：既に登録されているメールアドレスです。");
+        // メールアドレスの重複チェック
+        if (userRepository.findByEmail(email).isPresent()) {
             model.addAttribute("registerError", "このメールアドレスは既に登録されています。");
             return "register";
         }
 
-        // ③ 新しいユーザーのデータを作ってMySQLに保存する
+        // 新しいユーザーを作成して保存
         User newUser = new User();
-        newUser.setEmail(form.getEmail());
-        newUser.setPassword(form.getPassword());
-        newUser.setName("新規ユーザー"); // ※HTMLに名前入力欄があれば form.getName() 等に変えられます
-        newUser.setAge(20);             // ※HTMLに年齢入力欄があれば form.getAge() 等に変えられます
+        newUser.setEmail(email);
+        
+        // パスワードをしっかりBCryptでハッシュ化して保存！
+        String encodedPassword = passwordEncoder.encode(password);
+        newUser.setPasswordHash(encodedPassword); 
+        newUser.setDisplayName("新規ユーザー"); 
 
-        userRepository.save(newUser); // 🎯 MySQLへ保存！
-        System.out.println("新規登録成功！ログイン画面へ移動します。");
+        // AWSに保存
+        User savedUser = userRepository.save(newUser);
+        System.out.println("AWSへの新規登録成功！自動ログインします。");
 
-        // ⭕ 登録できたら、次はログインしてもらうためにログイン画面へジャンプ
-        return "redirect:/user/login";
+        // 自動ログイン状態にしてホーム画面へダイレクト遷移
+        session.setAttribute("user", savedUser);
+        
+        return "redirect:/home";
     }
 
     // ==========================================
@@ -112,5 +139,4 @@ public class LoginController {
         public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
     }
 }
-
 
