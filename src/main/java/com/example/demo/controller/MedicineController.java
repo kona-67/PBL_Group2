@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import com.example.demo.entity.User;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MedicineController {
 
     @Autowired  //DIコンテナの中に格納しているインスタンスの中からUserRepository型のインスタンスを取り出して、userRepositoryに代入する
     private MedicineRepository medicineRepository; // DB操作ツールを呼び出す
+
+    @Autowired
+    private HttpSession session;
 
     // 1. 登録画面を表示する（リクエストハンドラ）
     @GetMapping("/add-page")
@@ -41,12 +47,12 @@ public class MedicineController {
             return "add"; //HTMLを指定してreturnでそのHTMLページに遷移させる
         }
 
-        //ログインユーザーを取得
-        User loginUser = userRepository.findByUsername(userDetails.getUsername());
+        //sessionからログインユーザーを取得
+        User loginUser = (User) session.getAttribute("user");
 
         // 画面の入力データを、DB保存用のEntityにコピーする
         Medicine medicine = new Medicine();             //Medicineインスタンスを作成
-        medicine.setName(medicineForm.getName());   //setter
+        medicine.setMedicine_name(medicineForm.getName());   //setter
         medicine.setVolume(medicineForm.getVolume());
         medicine.setUnit(medicineForm.getUnit());
         if(medicineForm.getWeek() == null){//入力値なしの場合曜日指定なしとみなす
@@ -63,17 +69,17 @@ public class MedicineController {
         medicineRepository.save(medicine);
 
         // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
-        return "redirect:/list-page";
+        return "redirect:/medicine-to-home";
     }
 
-    // 3. 一覧画面を表示する
-    @GetMapping("/list-page2") //このリンクにアクセスしたらlist.htmlを開くという意味
+    // 3. ホーム画面を表示する
+    @GetMapping("/medicine-to-home") //このリンクにアクセスしたらhome.htmlを開くという意味
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<Medicine> medicineList = medicineRepository.findAll();
 
         // 画面（HTML）にデータを渡す
         model.addAttribute("medicineList", medicineList);
-        return "list"; // templates/list.html を開く
+        return "home"; // templates/home.html を開く
     }
 }
