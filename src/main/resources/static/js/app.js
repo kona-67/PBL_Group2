@@ -7,25 +7,25 @@ const moveLoginBtn = document.getElementById("moveLoginBtn");
 
 if(moveAddBtn){
     moveAddBtn.addEventListener("click", () =>{//薬の登録画面に遷移
-        window.location.href = "../templates/add.html";
+        window.location.href = "/add-page";
     })
 }
 
 if(moveHistoryBtn){
     moveHistoryBtn.addEventListener("click", () =>{//履歴画面に遷移
-        window.location.href = "../templates/history.html";
+        window.location.href = "/history";
     })
 }
 
 if(moveHomeBtn){
     moveHomeBtn.addEventListener("click", () =>{//ホーム画面に遷移
-        window.location.href = "../templates/home.html";
+        window.location.href = "/home";
     })
 }
 
 if(moveLoginBtn){
     moveLoginBtn.addEventListener("click", () =>{//ログイン画面に遷移
-        window.location.href = "../templates/login.html";
+        window.location.href = "/login";
     })
 }
 /* ここまで */

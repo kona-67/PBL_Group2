@@ -13,10 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
 import com.example.demo.entity.User;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -68,10 +66,11 @@ public class MedicineController {
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         medicineRepository.save(medicine);
 
-        // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
-        return "redirect:/medicine-to-home";
+        // 登録が終わったら、ホーム画面にリダイレクト（移動）する
+        return "redirect:/home";
     }
 
+    /*
     // 3. ホーム画面を表示する
     @GetMapping("/medicine-to-home") //このリンクにアクセスしたらhome.htmlを開くという意味
     public String showListPage(Model model) {
@@ -82,4 +81,5 @@ public class MedicineController {
         model.addAttribute("medicineList", medicineList);
         return "home"; // templates/home.html を開く
     }
+         */
 }
