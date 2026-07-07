@@ -52,7 +52,7 @@
                     <tbody>
                         <tr th:each="medicine : ${medicineList}">
                             <td th:text="${medicine.name}"></td>
-                            <td th:text="${medicine.medicine.volume} + ' ' + ${medicine.unit}"></td>
+                            <td th:text="${medicine.volume} + ' ' + ${medicine.unit}"></td>
                             <td th:text="${medicine.week} + '、' + ${medicine.time}"></td>
                             <td th:text="${medicine.startDay}"></td>
                             <td th:text="${medicine.finishDay}"></td>
