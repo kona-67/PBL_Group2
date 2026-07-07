@@ -17,7 +17,7 @@
     text-align: left;
 }
 
-.region #email{
+.region .email{
     width: 100%;
     height: 40px;
     font-size: 18px;
@@ -49,7 +49,8 @@
 }
 
 /*passwordエリア,確認用エリアの欄*/
-.region #password{
+.region .password,
+.region .confirmation-password{
     width: 100%;
     height: 40px;
     font-size: 18px;
