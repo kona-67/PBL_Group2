@@ -41,6 +41,8 @@ public class MedicineController {
             return "add"; //HTMLを指定してreturnでそのHTMLページに遷移させる
         }
 
+        //ログインユーザーを取得
+        User loginUser = userRepository.findByUsername(userDetails.getUsername());
 
         // 画面の入力データを、DB保存用のEntityにコピーする
         Medicine medicine = new Medicine();             //Medicineインスタンスを作成
@@ -55,6 +57,7 @@ public class MedicineController {
         medicine.setTime(medicineForm.getTime());
         medicine.setStartDay(medicineForm.getStartDay());
         medicine.setFinishDay(medicineForm.getFinishDay());
+        medicine.setUser(loginUser);
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         medicineRepository.save(medicine);

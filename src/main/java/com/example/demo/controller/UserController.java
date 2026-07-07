@@ -1,3 +1,6 @@
+
+//このファイルはテスト用ファイルであり実際のシステムの動作に関与しない
+
 //Get・Post処理を定義しているファイル。
 
 package com.example.demo.controller;
@@ -56,7 +59,6 @@ public class UserController {
          */
     }
 
-    /* 
     // 3. 一覧画面を表示する
     @GetMapping("/list-page")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
@@ -67,5 +69,4 @@ public class UserController {
         model.addAttribute("userList", userList);
         return "list"; // templates/list.html を開く
     }
-    */
 }
