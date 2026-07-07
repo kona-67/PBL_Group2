@@ -55,7 +55,7 @@ public class MedicineForm {
         }
         // 連結結果を返す（中身が空でもそのまま返す）
         return sb.toString();
-}
+    }   
 
 }
 
