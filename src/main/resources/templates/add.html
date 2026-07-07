@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>薬登録</title>
 
-        <link rel="stylesheet" href="../static/css/add.css">
+        <link rel="stylesheet" th:href="@{/css/add.css}">
     </head>
 
 
@@ -29,18 +29,11 @@
                             <input type="date" id="start-date" th:field="*{startDay}">
                         </div>
 
-                        <div>
-                            <p>から</p>
-                        </div>
-
                         <div class="finishday">
                             <label for="finish-date">終了日</label>
                             <input type="date" id="finish-date" th:field="*{finishDay}">
                         </div>
 
-                        <div>
-                            <p>まで</p>
-                        </div>
                     </div>
                 </div>
                 
