@@ -27,7 +27,7 @@ public class Notifications {
     @JoinColumn(name = "user_id")//DBのuser_idと紐づけ
     private User user;//Userオブジェクトの取得
 
-    @Column(name = "name")//DBのmedicine_nameと紐づけ
+    @Column(name = "name")//DBのnameと紐づけ
     private String name;//薬名
 
     @Column(name = "time")//DBのtimeと紐づけ
