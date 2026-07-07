@@ -11,7 +11,7 @@
         
         <!-- ホームに戻る -->
         <div class="top-nav">
-            <a th:href="@{/list-page}" class="btn-back">ホームに戻る</a>
+            <button id="moveHomeBtn">ホームに戻る</button>
         </div>
 
         <form th:action="@{/history}" method="get">
@@ -69,5 +69,6 @@
         </div>
 
     </div>
+    <script src="../static/js/app.js"></script>
 </body>
 </html>

@@ -2,30 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>RDSデータ一覧</title>
+    <title>登録済み薬一覧</title>
+    <link rel="stylesheet" href="../static/css/list.css">
 </head>
 <body>
-    <h2>現在RDS（AWS）に登録されているユーザー一覧</h2>
+    <h2>現在服用中の薬一覧</h2>
     
     <table border="1" style="border-collapse: collapse; width: 500px; text-align: left;">
         <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th>ID (自動)</th>
-                <th>名前</th>
-                <th>年齢</th>
+            <tr>
+                <th>ID</th>
+                <th>薬の名前</th>
+                <th>量</th>
+                <th>単位</th>
+                <th>開始日</th>
+                <th>終了日</th>
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="user : ${userList}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.age}"></td>
+        <tbody id="tableBody">
+             <tr th:each="medicine : ${medicineList}" th:data-id="${medicine.id}" class="row">
+                <td th:text="${medicine.id}"></td>
+                <td th:text="${medicine.name}"></td>
+                <td th:text="${medicine.volume}"></td>
+                <td th:text="${medicine.unit}"></td>
+                <td th:text="${medicine.startDay}"></td>
+                <td th:text="${medicine.finishDay}"></td>
             </tr>
-            <!--each:for文を意味している。今回の場合は変数userの中にuserListの要素が順に代入される-->
+            <!--each:for文を意味している。今回の場合は変数medicineの中にmedicineListの要素が順に代入される-->
         </tbody>
     </table>
 
     <br>
-    <a th:href="@{/test-page}">新しいユーザーを登録する</a>
+    <button id="moveHomeBtn">ホームに戻る</button>
+    <br>
+    <button id="moveAddBtn">新しい薬を登録する</button>
+
+    <script src="../static/js/app.js"></script>
 </body>
 </html>
