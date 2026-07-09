@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 @Controller
 public class UserController {
 
@@ -53,14 +51,15 @@ public class UserController {
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
 
-        /* 
+        
         // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
-        return "redirect:/list-page";
-         */
+        return "redirect:/home";
+        
     }
-
+    /*
+     
     // 3. 一覧画面を表示する
-    @GetMapping("/list-page1")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
+    @GetMapping("/home")                                   //このリンクにアクセスしたらlist.htmlを開くという意味
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<User> userList = userRepository.findAll();
@@ -69,4 +68,7 @@ public class UserController {
         model.addAttribute("userList", userList);
         return "list"; // templates/list.html を開く
     }
+    */
 }
+    
+    
