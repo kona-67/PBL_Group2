@@ -25,7 +25,7 @@ if(moveHomeBtn){
 
 if(moveLoginBtn){
     moveLoginBtn.addEventListener("click", () =>{//ログイン画面に遷移
-        window.location.href = "/login";
+        window.location.href = "/user/login";
     })
 }
 /* ここまで */
