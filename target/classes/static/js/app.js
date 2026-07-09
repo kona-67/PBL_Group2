@@ -7,25 +7,25 @@ const moveLoginBtn = document.getElementById("moveLoginBtn");
 
 if(moveAddBtn){
     moveAddBtn.addEventListener("click", () =>{//薬の登録画面に遷移
-        window.location.href = "../templates/add.html";
+        window.location.href = "/add-page";
     })
 }
 
 if(moveHistoryBtn){
     moveHistoryBtn.addEventListener("click", () =>{//履歴画面に遷移
-        window.location.href = "../templates/history.html";
+        window.location.href = "/history";
     })
 }
 
 if(moveHomeBtn){
     moveHomeBtn.addEventListener("click", () =>{//ホーム画面に遷移
-        window.location.href = "../templates/home.html";
+        window.location.href = "/home";
     })
 }
 
 if(moveLoginBtn){
     moveLoginBtn.addEventListener("click", () =>{//ログイン画面に遷移
-        window.location.href = "../templates/login.html";
+        window.location.href = "/user/login";
     })
 }
 /* ここまで */
@@ -43,7 +43,20 @@ if(moveLoginBtn){
 /* ここまで */
 
 /* ここから list.htmlの処理 */
+const moveEdit = document.getElementById("tableBody");
 
+if(moveEdit){
+    moveEdit.addEventListener("DOMContentLoaded", () => {
+    const rows = moveEdit.querySelectorAll("#tableBody .row");
+
+    rows.forEach(row => {
+        row.addEventListener("click", () => {
+            const id = row.dataset.id;
+            window.location.href = `/edit/${id}`;
+        });
+    });
+});
+}
 /* ここまで */
 
 /* ここからlogin.html */
