@@ -1,0 +1,115 @@
+
+/*入力エリア*/
+.edit .form-area{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 50px;
+}
+
+/*h1タグ*/
+.edit h1{
+    text-align: center;
+}
+
+/*薬名入力エリア*/
+.edit #medicine-name{
+    width: 300px;
+    height: 40px;
+}
+
+/*服用量入力エリア, 単位入力*/
+.edit .medicine-input-area{
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+/*服用量のテキストエリア*/
+.edit #medicine-volume{
+    width: 100px;
+}
+
+/*単位の入力エリア*/
+.edit #unit{
+    width: 80px;
+}
+
+/*期間入力エリア*/
+.edit .data-area{
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    flex-direction: column;
+}
+
+
+.edit .startday,
+.edit .finishday {
+    display: flex;
+    flex-direction: column;
+}
+
+/*曜日チェックボックス*/
+.edit .week-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.edit .week-area label{
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.edit .week-area input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 8px;
+}
+
+/*時間入力*/
+.edit .time{
+    margin-top: 10px;
+}
+
+.edit .time label{
+    font-size: 20px;
+}
+
+.edit .time #time-area{
+    width: 70px;
+    height: 30px;
+}
+
+/*ボタンエリア*/
+/*更新、削除ボタンエリア*/
+.edit .edit-btn-area{
+    text-align: center;
+
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 350px;
+    display: flex;
+    align-items: center;
+    gap: 10px;          /* ボタン同士の間隔 */
+    flex-wrap: nowrap;  /* 改行しない */
+}
+
+/*削除、更新ボタン*/
+.edit .update-btn,
+.edit .delete-btn{
+    width: 120px;
+    height: 40px;
+    white-space: nowrap; /* ボタン内の文字も改行しない */
+}
+
+/*一覧に戻るボタンエリア*/
+.edit .btn-area .list-btn-area{
+    text-align: center;
+
+    margin-top: 30px;
+    margin-left: 350px;
+}

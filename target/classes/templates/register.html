@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>新規登録</title>
+        <link rel="stylesheet" th:href="@{/css/register.css}">
+    </head>
+
+    <body class="region">
+        <h2>新規登録</h2>
+
+        <form th:action="@{/user/register}" method="post">
+
+            <div class="email-area">
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" class="email">
+            </div>
+
+            <br><br>
+
+            <div class="password-area">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" placeholder="パスワードを入力" class="password">
+            </div>
+
+            <br><br>
+
+            <div class="confirmation-password-area">
+                <label for="passwordConfirm">確認用:</label>
+                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="パスワードを入力">
+            </div>
+
+            <br><br>
+            <div class="sendBtn-area">
+                <button type="submit" class="sendBtn">送信</button>
+            </div>
+
+        </form>
+    </body>
+</html>
