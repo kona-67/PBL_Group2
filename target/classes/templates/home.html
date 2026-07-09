@@ -4,70 +4,59 @@
         <meta charset="UTF-8">
         <title>ホーム</title>
 
-        <link rel="stylesheet" href="../static/css/home.css">
+        <link rel="stylesheet" th:href="@{/css/home.css}">
+    </head>
+
     <body class="home">
-        <h1>お薬リマインダー</h1>
+        <div class="top-area">
+            <h1>お薬リマインダー</h1>
+
+            <div class="login-Btn">
+                <p class="text" th:text="${medicine.name}"></p>
+                <button class="Btn" id="moveLoginBtn">ログイン画面に戻る</button>
+            </div>
+        </div>
 
         <div class="line"></div>
 
-        <div class="login-Btn">
-            <p class="text">アカウントネーム</p>
-            <button class="Btn" id="moveLoginBtn">ログイン画面に戻る</button>
+        <div class="main-area">
+            <div class="left-area">
+                <div class="add-Btn">
+                    <p class="text">新規薬登録はこちら</p>
+                    <button class="Btn" id="moveAddBtn">薬登録画面</button>
+                </div>
+
+                <div class="history-Btn">
+                    <p class="text">服用理履歴はこちら</p>
+                    <button class="Btn" id="moveHistoryBtn">服用履歴画面</button>
+                </div>
+            </div>
+
+
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>薬名</th>
+                            <th>服用量</th>
+                            <th>服用タイミング</th>
+                            <th>開始日</th>
+                            <th>終了日</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="medicine : ${medicineList}">
+                            <td th:text="${medicine.name}"></td>
+                            <td th:text="${medicine.medicine.volume} + ' ' + ${medicine.unit}"></td>
+                            <td th:text="${medicine.week} + '、' + ${medicine.time}"></td>
+                            <td th:text="${medicine.startDay}"></td>
+                            <td th:text="${medicine.finishDay}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div class="add-Btn">
-            <p class="text">テキスト</p>
-            <button class="Btn" id="moveAddBtn">薬登録画面</button>
-        </div>
-
-        <div class="history-Btn">
-            <p class="text">テキスト</p>
-            <button class="Btn" id="moveHistoryBtn">服用履歴画面</button>
-        </div>
-
-        <div class="table-box">
-            <table>
-                <thead>
-                    <tr>
-                        <th>薬名</th>
-                        <th>服用量</th>
-                        <th>服用タイミング</th>
-                        <th>開始日</th>
-                        <th>終了日</th>
-                        <th>画像</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <script src="../static/js/app.js"></script>
+        <script th:src="@{/js/app.js}"></script>
     </body>
 </html>

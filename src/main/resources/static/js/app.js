@@ -43,7 +43,20 @@ if(moveLoginBtn){
 /* ここまで */
 
 /* ここから list.htmlの処理 */
+const moveEdit = document.getElementById("tableBody");
 
+if(moveEdit){
+    moveEdit.addEventListener("DOMContentLoaded", () => {
+    const rows = moveEdit.querySelectorAll("#tableBody .row");
+
+    rows.forEach(row => {
+        row.addEventListener("click", () => {
+            const id = row.dataset.id;
+            window.location.href = `/edit/${id}`;
+        });
+    });
+});
+}
 /* ここまで */
 
 /* ここからlogin.html */

@@ -1,49 +1,30 @@
 /*home.html*/
-/*フッダー*/
-.home{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
+
+
+/*top-area------------------------*/
+.top-area{
+    position: relative;
+    height: 80px;
 }
+
 
 /*h1タグ*/
-.home h1{
-    position: absolute;
-    left: 50%;
-    top: 10%;
-
-    transform: translate(-50%, -50%);
-
+.home .top-area h1{
+    text-align: center;
     margin: 0;
-    font-size: clamp(30px, 4vw, 50px);
-}
-
-/*線*/
-.home .line{
-    position: absolute;
-    left: 50%;
-    top: 15%;
-
-    transform: translate(-50%, -50%);
-
-    width: 80%;
-    height: 2px;
-    background: black;
-    margin: 0px auto;
+    line-height: 80px;
 }
 
 /*ログイン画面ボタンテキスト*/
 .home .login-Btn .text {
     position: absolute;
-    top: 3%;
-    left: 78%;
-
-    width: 10vw;
+    right: 5%;
+    top: 30%;
+    transform: translateY(-50%);
+    
     min-width: 80px;
     max-width: 250px;
 
-    height: 5vh;
     min-height: 30px;
     max-height: 80px;
 
@@ -53,34 +34,59 @@
 /*ログイン画面ボタン*/
 .home .login-Btn .Btn{
     position: absolute;
-    top: 8%;
-    left: 78%;
+    right: 5%;
+    top: 70%;
+    transform: translateY(-50%);
 
-    width: 10vw;
     min-width: 80px;
     max-width: 250px;
 
-    height: 5vh;
     min-height: 30px;
     max-height: 80px;
 
     font-size: 9px;
 }
 
+/*top-area終わり*/
+
+
+
+/*線*/
+.home .line{
+    width: 90%;
+    max-width: none;
+    min-width: 100px;
+    height: 2px;
+    background: black;
+    margin: 0px auto;
+}
+
+/*main-area------------------------*/
+
+.main-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+    padding: 0 30px;
+    gap: 50px;
+}
+
+/*left-area----------------*/
+
+.home .left-area{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 /*薬登録ボタンテキスト*/
 .home .add-Btn .text {
-    position: absolute;
-    top: 19%;
-    left: 3%;
     font-size: 17px;
 }
 
 /*薬登録ボタン*/
 .home .add-Btn .Btn {
-    position: absolute;
-    top: 30%;
-    left: 4%;
-
     width: 150px;
     height: 50px;
     font-size: 20px;
@@ -88,33 +94,33 @@
 
 /*服用履歴ボタンテキスト*/
 .home .history-Btn .text {
-    position: absolute;
-    top: 49%;
-    left: 3%;
     font-size: 17px;
 }
 
 /*服用履歴ボタン*/
 .home .history-Btn .Btn {
-    position: absolute;
-    top: 60%;
-    left: 4%;
+
 
     width: 150px;
     height: 50px;
     font-size: 20px;
 }
 
+/*left-area終わり*/
+
+/*table-box---------------*/
+
 /*リスト*/
 .home .table-box {
-    position: absolute;
-    top: 30%;
-    left: 30%;
-
-    width: 60%;
-    height: 50vh;      /* 画面の半分 */
+    margin-top: 10px;
     overflow: auto;
-    border: 1px solid black;
+    border: 2px solid black;
+
+    width: 70%;
+    border-collapse: collapse;
+    height: 350px;
+    overflow-y: auto;
+
 }
 
 .home table {
@@ -122,20 +128,21 @@
     border-bottom: 1px solid #ccc;
 
     width: 100%;
-    min-width: 800px;
-
     border-collapse: collapse;
 
+    margin-left: auto;
     white-space: nowrap;
 
 }
 
 .home th,td {
     border: 1px solid black;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
 }
 
 .home th {
     background-color: #f0f0f0;
 }
+/*table-area終わり*/
+/*bottom-area終わり*/
