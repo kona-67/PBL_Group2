@@ -14,7 +14,7 @@
             <button id="moveHomeBtn">ホームに戻る</button>
         </div>
 
-        <form th:action="@{/history}" method="get">
+        <form th:action="@{/history-list}" method="get">
             <div class="controls-row">
                 <!-- 検索フォーム -->
                 <div class="search-section-box">
@@ -28,7 +28,7 @@
                             <option value="未服用" th:selected="${status == '未服用'}">未服用</option>
                         </select>
                         <button type="submit" class="btn-submit">検索</button>
-                        <a th:href="@{/history}" class="btn-reset">リセット</a>
+                        <a th:href="@{/history-list}" class="btn-reset">リセット</a>
                     </div>
                 </div>
 
