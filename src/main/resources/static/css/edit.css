@@ -1,3 +1,9 @@
+/*body*/
+.edit{
+    margin:0;
+    background:#eef7fb;
+    font-family:"Yu Gothic",sans-serif;
+}
 
 /*入力エリア*/
 .edit .form-area{
@@ -7,9 +13,45 @@
     margin-top: 50px;
 }
 
+/*input*/
+.edit input[type="text"],
+.edit input[type="date"],
+.edit input[type="time"]{
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+    padding:8px;
+
+    font-size:16px;
+}
+
+.edit input:focus{
+
+    outline:none;
+
+    border-color:#142c8b;
+
+    box-shadow:0 0 5px rgba(69, 159, 177, 0.785);
+
+}
+
 /*h1タグ*/
 .edit h1{
     text-align: center;
+}
+
+/*left-area------------------*/
+.edit .left-area,
+.edit .right-area{
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    padding:30px;
 }
 
 /*薬名入力エリア*/
@@ -52,11 +94,15 @@
     flex-direction: column;
 }
 
+/*right-area-------------------*/
+
 /*曜日チェックボックス*/
-.edit .week-area {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.edit .week-area{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+    gap:12px 30px;
 }
 
 
@@ -72,7 +118,12 @@
 
 /*時間入力*/
 .edit .time{
-    margin-top: 10px;
+
+    display:flex;
+    align-items:center;
+
+    margin-top:30px;
+    gap:15px;
 }
 
 .edit .time label{
@@ -91,11 +142,27 @@
 
     justify-content: center;
     margin-top: 40px;
-    margin-left: 350px;
     display: flex;
     align-items: center;
     gap: 10px;          /* ボタン同士の間隔 */
     flex-wrap: nowrap;  /* 改行しない */
+}
+
+.edit button{
+
+    width:220px;
+    height:50px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#4CAF50;
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+    transition:.2s;
 }
 
 /*削除、更新ボタン*/
@@ -111,5 +178,4 @@
     text-align: center;
 
     margin-top: 30px;
-    margin-left: 350px;
 }
