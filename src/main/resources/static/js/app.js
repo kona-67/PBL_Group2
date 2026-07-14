@@ -4,6 +4,7 @@ const moveAddBtn = document.getElementById("moveAddBtn");
 const moveHistoryBtn = document.getElementById("moveHistoryBtn");
 const moveHomeBtn = document.getElementById("moveHomeBtn");
 const moveLoginBtn = document.getElementById("moveLoginBtn");
+const moveListBtn = document.getElementById("moveListBtn");
 
 if(moveAddBtn){
     moveAddBtn.addEventListener("click", () =>{//薬の登録画面に遷移
@@ -13,7 +14,7 @@ if(moveAddBtn){
 
 if(moveHistoryBtn){
     moveHistoryBtn.addEventListener("click", () =>{//履歴画面に遷移
-        window.location.href = "/history";
+        window.location.href = "/history-list";
     })
 }
 
@@ -26,6 +27,12 @@ if(moveHomeBtn){
 if(moveLoginBtn){
     moveLoginBtn.addEventListener("click", () =>{//ログイン画面に遷移
         window.location.href = "/user/login";
+    })
+}
+
+if(moveListBtn){
+    moveListBtn.addEventListener("click", () =>{//薬の一覧画面に遷移
+        window.location.href = "/list";
     })
 }
 /* ここまで */
