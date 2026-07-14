@@ -29,12 +29,6 @@ public class HomeController {
         return "home"; // templates/home.html を開く
     }
 
-    // 1. ログイン画面を表示する
-    @GetMapping("/login") 
-    public String showLoginPage() {
-        return "login"; // templates/login.html を開く
-    }
-
     // 1. 薬の登録情報一覧画面を表示する
     @GetMapping("/list") 
     public String showListPage(Model model) {
@@ -44,18 +38,6 @@ public class HomeController {
         // ★HTMLにデータを渡す
         model.addAttribute("medicineList", medicineList);
         return "list"; // templates/list.html を開く
-    }
-    
-    // 1. 薬の登録画面を表示する
-    @GetMapping("/add") 
-    public String showAddPage() {
-        return "add"; // templates/add.html を開く
-    }
-
-    // 1. 服用履歴画面を表示する
-    @GetMapping("/history") 
-    public String showHistoryPage() {
-        return "history"; // templates/history.html を開く
     }
 
 

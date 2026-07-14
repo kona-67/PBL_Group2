@@ -14,7 +14,7 @@ if(moveAddBtn){
 
 if(moveHistoryBtn){
     moveHistoryBtn.addEventListener("click", () =>{//履歴画面に遷移
-        window.location.href = "/history";
+        window.location.href = "/history-list";
     })
 }
 
