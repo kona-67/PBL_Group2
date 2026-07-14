@@ -44,7 +44,7 @@
     min-height: 30px;
     max-height: 80px;
 
-    font-size: 9px;
+    font-size: 15px;
 }
 
 /*top-area終わり*/
@@ -63,21 +63,35 @@
 
 /*main-area------------------------*/
 
-.main-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 30px;
-    padding: 0 30px;
-    gap: 50px;
+.main-area{
+    display:flex;
+    gap:30px;
+    width:90%;
+    margin:30px auto;
 }
 
 /*left-area----------------*/
 
 .home .left-area{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    width:260px;
+    background:#ffffff;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    padding:20px;
+}
+
+.add-Btn,
+.list-Btn,
+.history-Btn{
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    padding:10px;
+    margin-bottom:10px;
+    text-align:center;
+
+    background:#fafafa;
 }
 
 /*薬登録ボタンテキスト*/
@@ -116,21 +130,57 @@
     font-size: 20px;
 }
 
+.home .Btn{
+
+    width:170px;
+    height:45px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#4CAF50;
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.Btn:hover{
+
+    background:#43a047;
+
+    transform:translateY(-2px);
+}
+
 /*left-area終わり*/
 
 /*right-area--------------*/
+.home .right-area{
+
+    width: 70%;
+
+    flex:1;
+
+    background:white;
+
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    padding:20px;
+}
+
 /*table-box---------------*/
 
 /*リスト*/
-.home .table-box {
-    margin-top: 10px;
-    overflow: auto;
-    border: 2px solid black;
+.home .table-box{
 
-    width: 70%;
-    height: 350px;
-    overflow: auto;
+    width:100%;
+    height:400px;
 
+    overflow:auto;
+
+    border-radius:10px;
 }
 
 .home table {
@@ -141,7 +191,6 @@
     border-collapse: collapse;
 
     white-space: nowrap;
-
 }
 
 .home th,td {
@@ -150,8 +199,14 @@
     text-align: center;
 }
 
-.home th {
-    background-color: #f0f0f0;
+.home th{
+
+    background:#4CAF50;
+    color:white;
+
+    position:sticky;
+
+    top:0;
 }
 
 .home .weekday-area label{
@@ -160,8 +215,8 @@
 /*table-area終わり*/
 
 .home .notification-btn-area .btn{
-    height: 30px;
-    width: 80px;
+    height: 40px;
+    width: 90px;
 }
 /*right-area終わり*/
 /*bottom-area終わり*/
