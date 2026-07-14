@@ -1,23 +1,18 @@
 .list .table-box {
-    margin-top: 10px;
-    overflow: auto;
-    border: 2px solid black;
-
     width: 60%;
-    border-collapse: collapse;
     height: 150px;
-    overflow-y: auto;
 
+    margin-top: 10px auto;
+    overflow: auto;  /*縦横スクロール*/
+    border: 2px solid black;
 }
 
 .list table {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid black;
 
     width: 100%;
     border-collapse: collapse;
 
-    margin-left: auto;
     white-space: nowrap;
 
 }
@@ -30,4 +25,9 @@
 
 .list th {
     background-color: #f0f0f0;
+}
+
+/*moveAddBtn*/
+.list #moveAddBtn{
+    margin-top: 10px;
 }
