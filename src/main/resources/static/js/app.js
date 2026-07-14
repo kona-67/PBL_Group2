@@ -40,6 +40,77 @@ if(moveLoginBtn){
 /* ここまで */
 
 /* ここからhome.html */
+
+const addNotificationBtn = document.getElementById("addNotificationBtn");
+const tableBody = document.getElementById("notificationTableBody");
+
+if (addNotificationBtn && tableBody) {
+
+    addNotificationBtn.addEventListener("click", () => {
+
+        const index = tableBody.rows.length;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>
+                <input type="text"
+                    name="notifications[${index}].name"
+                    placeholder="薬名">
+            </td>
+
+            <td>
+                <input type="time"
+                    name="notifications[${index}].time">
+            </td>
+
+            <td>
+
+                <select name="notifications[${index}].weekday">
+                    <option value="月">月</option>
+                    <option value="火">火</option>
+                    <option value="水">水</option>
+                    <option value="木">木</option>
+                    <option value="金">金</option>
+                    <option value="土">土</option>
+                    <option value="日">日</option>
+                </select>
+            </td>
+
+            <td>
+                <input type="hidden"
+                    name="notifications[${index}].enabled"
+                    value="false">
+
+                <input type="checkbox"
+                    name="notifications[${index}].enabled"
+                    value="true"
+                    checked>
+            </td>
+
+            <td>
+                <button type="button" class="deleteBtn">
+                    削除
+                </button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+
+    });
+
+    tableBody.addEventListener("click", (event) => {
+
+        if (event.target.classList.contains("deleteBtn")) {
+
+            event.target.closest("tr").remove();
+
+        }
+
+    });
+
+}
+
 /* ここまで */
 
 /* ここから list.htmlの処理 */

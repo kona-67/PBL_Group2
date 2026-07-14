@@ -9,24 +9,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.entity.Medicine;
 import com.example.demo.repository.MedicineRepository;
-
+import com.example.demo.service.NotificationService;
 @Controller
 public class HomeController {
 
     @Autowired
     private MedicineRepository medicineRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     // 1. ホーム画面を表示する
     @GetMapping("/home")
     public String showHomePage(Model model) {
 
-        // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<Medicine> medicineList = medicineRepository.findAll();
 
-        // ★HTMLにデータを渡す
         model.addAttribute("medicineList", medicineList);
 
-        return "home"; // templates/home.html を開く
+        // 通知一覧をHTMLへ渡す
+        model.addAttribute(
+            "notificationList",
+            notificationService.getAllNotifications()
+        );
+
+        return "home";
     }
 
     // 1. ログイン画面を表示する
