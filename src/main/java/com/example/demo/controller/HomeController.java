@@ -53,4 +53,7 @@ public class HomeController {
         return "list"; // templates/list.html を開く
     }
 
+//ｓ
+
+
 }
