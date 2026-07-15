@@ -12,8 +12,10 @@ import com.example.demo.entity.User;
 @Service
 public class NotificationService {
 
+    // DIコンテナの中に格納しているインスタンスの中からNotificationsRepository型のインスタンスを取り出して、notificationsRepositoryに代入する
     private final NotificationsRepository notificationsRepository;
 
+    // DIコンテナの中に格納しているインスタンスの中からNotificationsRepository型のインスタンスを取り出して、notificationsRepositoryに代入する
     public NotificationService(NotificationsRepository notificationsRepository) {
         this.notificationsRepository = notificationsRepository;
     }
@@ -22,6 +24,11 @@ public class NotificationService {
     // 全件取得
     public List<Notifications> getAllNotifications() {
         return notificationsRepository.findAll();
+    }
+
+    // ユーザーごとの通知取得
+    public List<Notifications> getNotificationsByUser(User user) {
+        return notificationsRepository.findByUser(user);
     }
 
 

@@ -19,6 +19,7 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
 
             //送新先、件名、本文を追加
+            message.setFrom("25110036@oic-ok.ac.jp");
             message.setTo(to);
             message.setSubject("服薬通知");
             message.setText(medicineName + " を服用する時間です。");

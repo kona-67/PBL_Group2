@@ -97,38 +97,80 @@
                                 <!-- 曜日 -->
                                 <td>
 
-                                    <!--<input
+                                    <input
                                         type="hidden"
                                         class="weekdayValue"
                                         th:name="'notifications[' + ${stat.index} + '].weekday'"
                                         th:value="${notification.weekday}">
-                                    -->
-
-                                        <select th:name="'notifications[' + ${stat.index} + '].weekday'">
-
-                                            <option value="月" th:selected="${notification.weekday == '月'}">月</option>
-                                            <option value="火" th:selected="${notification.weekday == '火'}">火</option>
-                                            <option value="水" th:selected="${notification.weekday == '水'}">水</option>
-                                            <option value="木" th:selected="${notification.weekday == '木'}">木</option>
-                                            <option value="金" th:selected="${notification.weekday == '金'}">金</option>
-                                            <option value="土" th:selected="${notification.weekday == '土'}">土</option>
-                                            <option value="日" th:selected="${notification.weekday == '日'}">日</option>
-
-
-                                        </select>
-
+                                    
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="月"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('月')}">    
+                                        月
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="火"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('火')}">    
+                                        火
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="水"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('水')}">    
+                                        水
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="木"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('木')}">    
+                                        木
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="金"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('金')}">    
+                                        金
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="土"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('土')}">    
+                                        土  
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="weekdayCheckbox"
+                                            value="日"
+                                            th:checked="${notification.weekday != null and notification.weekday.contains('日')}">    
+                                        日
+                                    </label>
                                 </td>
 
                                 <!-- ON/OFF -->
                                 <td>
                                     <input
                                         type="hidden"
+                                        class="enabledValue"
                                         th:name="'notifications[' + ${stat.index} + '].enabled'"
                                         value="false">
                                     <input
                                         type="checkbox"
-                                        th:name="'notifications[' + ${stat.index} + '].enabled'"
-                                        value="true"
+                                        class="enabledCheckbox"
                                         th:checked="${notification.enabled}">
                                 </td>
 

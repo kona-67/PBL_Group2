@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.entity.Medicine;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.service.NotificationService;
+import com.example.demo.entity.User;
+
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class HomeController {
 
@@ -21,16 +25,18 @@ public class HomeController {
 
     // 1. ホーム画面を表示する
     @GetMapping("/home")
-    public String showHomePage(Model model) {
+    public String showHomePage(Model model, HttpSession session) {
 
         List<Medicine> medicineList = medicineRepository.findAll();
 
         model.addAttribute("medicineList", medicineList);
 
+        User loginUser = 
+            (User) session.getAttribute("loginUser");
         // 通知一覧をHTMLへ渡す
         model.addAttribute(
             "notificationList",
-            notificationService.getAllNotifications()
+            notificationService.getNotificationsByUser(loginUser)
         );
 
         return "home";
@@ -46,9 +52,5 @@ public class HomeController {
         model.addAttribute("medicineList", medicineList);
         return "list"; // templates/list.html を開く
     }
-
-
-//ｓ
-
 
 }

@@ -28,6 +28,8 @@ public class NotificationScheduler {
     @Scheduled(fixedRate = 60000)
     public void checkNotifications() {
 
+        System.out.println("通知チェック実行：" + LocalTime.now());
+
         // 通知ONのデータを取得
         List<Notifications> notifications =
                 notificationsRepository.findByEnabledTrue();
@@ -42,6 +44,13 @@ public class NotificationScheduler {
         // 通知データを1件ずつチェック
         for (Notifications notification : notifications) {
 
+            System.out.println("------------");
+            System.out.println("薬：" + notification.getName());
+            System.out.println("DB時間：" + notification.getTime());
+            System.out.println("現在時間：" + now);
+            System.out.println("DB曜日：" + notification.getWeekday());
+            System.out.println("今日：" + today);
+            
             String weekday = notification.getWeekday();
 
             // 今日が通知対象か判定
@@ -49,8 +58,12 @@ public class NotificationScheduler {
                     weekday.equals("毎日")
                     || weekday.contains(today);
 
+            System.out.println("曜日一致：" + todayMatch);
+            System.out.println("時間一致：" + notification.getTime().equals(now));
             // 曜日・時間が一致したらメール送信
             if (todayMatch && notification.getTime().equals(now)) {
+
+                System.out.println("メール送信開始");
 
                 emailService.sendMail(
                         notification.getUser().getEmail(),

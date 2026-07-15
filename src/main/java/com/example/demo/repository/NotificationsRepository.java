@@ -16,6 +16,8 @@ public interface NotificationsRepository extends JpaRepository<Notifications, In
     // enabled = true の通知だけ取得
     List<Notifications> findByEnabledTrue();
 
+    // enabled = true の通知だけ取得（ユーザー指定）
+    List<Notifications> findByUser(User user);
     @Transactional
     @Modifying
     void deleteByUser(User user);

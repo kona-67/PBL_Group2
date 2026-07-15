@@ -24,13 +24,16 @@ public class NotificationController {
             @ModelAttribute NotificationForm form,
             HttpSession session) {
 
-        User loginUser = (User) session.getAttribute("user");
+        User loginUser = (User) session.getAttribute("loginUser");
 
         notificationService.deleteAllByUser(loginUser);
 
         if (form.getNotifications() != null) {
 
             for (Notifications notification : form.getNotifications()) {
+
+                System.out.println("薬名：" + notification.getName());
+                System.out.println("enabled：" + notification.getEnabled());
 
                 notification.setUser(loginUser);
 

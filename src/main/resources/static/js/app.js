@@ -73,25 +73,63 @@ if (addNotificationBtn && tableBody) {
 
             <td>
 
-                <select name="notifications[${index}].weekday">
-                    <option value="月">月</option>
-                    <option value="火">火</option>
-                    <option value="水">水</option>
-                    <option value="木">木</option>
-                    <option value="金">金</option>
-                    <option value="土">土</option>
-                    <option value="日">日</option>
-                </select>
+                <input
+                    type="hidden"
+                    class="weekdayValue"
+                    name="notifications[${index}].weekday">
+
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="月">
+                    月
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="火">
+                    火
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="水">
+                    水
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="木">
+                    木
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="金">
+                    金
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="土">
+                    土
+                </label>
+                <label>
+                    <input type="checkbox"
+                        class="weekdayCheckbox"
+                        value="日">
+                    日
+                </label>
             </td>
 
             <td>
                 <input type="hidden"
+                    class="enabledValue"
                     name="notifications[${index}].enabled"
                     value="false">
 
                 <input type="checkbox"
-                    name="notifications[${index}].enabled"
-                    value="true"
+                    class="enabledCheckbox"
                     checked>
             </td>
 
@@ -118,6 +156,60 @@ if (addNotificationBtn && tableBody) {
 
 }
 
+const notificationForm = document.querySelector("form");
+
+if(notificationForm){
+
+    notificationForm.addEventListener("submit", function(){
+
+        document.querySelectorAll("tr").forEach(function(row){
+
+            let checks =
+                row.querySelectorAll(".weekdayCheckbox");
+
+            let hidden =
+                row.querySelector(".weekdayValue");
+
+
+            if(checks.length > 0 && hidden){
+
+                let days = [];
+
+                checks.forEach(function(check){
+
+                    if(check.checked){
+                        days.push(check.value);
+                    }
+
+                });
+
+                hidden.value = days.join(",");
+
+            }
+
+        });
+
+        // ON/OFFをtrue,falseへ変換
+        document.querySelectorAll(".enabledCheckbox")
+        .forEach(function(check){
+
+            let hidden =
+                check.previousElementSibling;
+
+            if(check.checked){
+
+                hidden.value = "true";
+
+            }else{
+
+                hidden.value = "false";
+
+            }
+
+        });
+    });
+
+}
 /* ここまで */
 
 /* ここから list.htmlの処理 */
