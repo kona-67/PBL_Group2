@@ -106,7 +106,7 @@ public class MedicineController {
         public String showListPage(Model model) {
 
         // ★ログインユーザーをセッションから取得
-        User loginUser = (User) session.getAttribute("loginUser");
+        User loginUser = (User) session.getAttribute("user");
 
         // ★ログインユーザーの user_id に一致するデータだけ取得
         List<Medicine> medicineList = medicineRepository.findByUserId(loginUser.getId());
