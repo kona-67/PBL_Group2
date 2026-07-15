@@ -3,41 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>登録済み薬一覧</title>
-    <link rel="stylesheet" th:href="@{/css/list.css"}>
+    <link rel="stylesheet" th:href="@{/css/list.css}"><!--th:href="@{/css/list.css"}-->
 </head>
 <body class="list">
     <h2>現在服用中の薬一覧</h2>
-    <div class="table-box">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>薬の名前</th>
-                    <th>量</th>
-                    <th>単位</th>
-                    <th>開始日</th>
-                    <th>終了日</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <tr th:each="medicine : ${medicineList}" th:data-id="${medicine.id}" class="row">
-                    <td th:text="${medicine.id}"></td>
-                    <td th:text="${medicine.name}"></td>
-                    <td th:text="${medicine.volume}"></td>
-                    <td th:text="${medicine.unit}"></td>
-                    <td th:text="${medicine.startDay}"></td>
-                    <td th:text="${medicine.finishDay}"></td>
-                </tr>
-                
-                <!--each:for文を意味している。今回の場合は変数medicineの中にmedicineListの要素が順に代入される-->
-            </tbody>
-        </table>
+    <div class="list-card">
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>薬の名前</th>
+                        <th>量</th>
+                        <th>単位</th>
+                        <th>開始日</th>
+                        <th>終了日</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr th:each="medicine : ${medicineList}" th:data-id="${medicine.id}" class="row">
+                        <td th:text="${medicine.id}"></td>
+                        <td th:text="${medicine.name}"></td>
+                        <td th:text="${medicine.volume}"></td>
+                        <td th:text="${medicine.unit}"></td>
+                        <td th:text="${medicine.startDay}"></td>
+                        <td th:text="${medicine.finishDay}"></td>
+                    </tr>
+                    
+                    <!--each:for文を意味している。今回の場合は変数medicineの中にmedicineListの要素が順に代入される-->
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <br>
-    <button id="moveHomeBtn">ホームに戻る</button>
-    <br>
-    <button id="moveAddBtn">新しい薬を登録する</button>
+    <div class="btn-area">
+        <button id="moveHomeBtn">ホームに戻る</button>
+        <button id="moveAddBtn">新しい薬を登録する</button>
+    </div>
 
     <script th:src="@{/js/app.js}"></script>
 </body>
