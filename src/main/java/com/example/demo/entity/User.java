@@ -12,6 +12,8 @@ import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
 
+import java.util.List;
+import jakarta.persistence.OneToMany;
 
 //DBのテーブルを作成する際はClassで生成する。
 @Entity                //このクラスがDBのテーブル定義に使うクラスであるということを示している。
@@ -38,6 +40,9 @@ public class User {
 
     @Column(name = "created_at", updatable = false) // 💡 データベース上の列名を「created_at」にします
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Notifications> notifications;
 
     // 💡 新規登録（保存）したときに、自動で現在日時をcreated_atにセットする魔法の処理
     @PrePersist
