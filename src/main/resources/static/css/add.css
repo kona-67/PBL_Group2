@@ -1,3 +1,10 @@
+/*body*/
+.add{
+    margin:0;
+    background:#eef7fb;
+    font-family:"Yu Gothic",sans-serif;
+}
+
 /*入力エリア*/
 .add .form-area{
     display: flex;
@@ -6,10 +13,45 @@
     margin-top: 50px;
 }
 
+/*input*/
+.add input[type="text"],
+.add input[type="date"],
+.add input[type="time"]{
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+    padding:8px;
+
+    font-size:16px;
+}
+
+.add input:focus{
+
+    outline:none;
+
+    border-color:#142c8b;
+
+    box-shadow:0 0 5px rgba(69, 159, 177, 0.785);
+
+}
 
 /*h1タグ*/
 .add h1{
     text-align: center;
+}
+
+/*left-area------------------*/
+.add .left-area,
+.add .right-area{
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    padding:30px;
 }
 
 /*薬名入力エリア*/
@@ -52,11 +94,15 @@
     flex-direction: column;
 }
 
+/*right-area------------------*/
+
 /*曜日チェックボックス*/
-.add .week-area {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.add .week-area{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+    gap:12px 30px;
 }
 
 .add .week-area label{
@@ -71,7 +117,12 @@
 
 /*時間入力*/
 .add .time{
-    margin-top: 10px;
+
+    display:flex;
+    align-items:center;
+
+    margin-top:30px;
+    gap:15px;
 }
 
 .add .time label{
@@ -85,15 +136,28 @@
 
 /*登録ボタン*/
 .add .btn-area{
-    text-align: center;
-    margin-top: 30px;
+
+    text-align:center;
+
+    margin:40px 0;
 }
 
 
 .add #btn{
-    width: 200px;
-    height: 50px;
-    font-size: 18px;
-    cursor: pointer;
+
+    width:220px;
+    height:50px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#4CAF50;
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+    transition:.2s;
+
 }
 
