@@ -145,15 +145,16 @@
 
 /*ボタンエリア*/
 /*更新、削除ボタンエリア*/
-.edit .edit-btn-area{
-    text-align: center;
+/* 更新・削除ボタンを横並び */
+.update-btn-area,
+.delete-btn-area{
+    display: inline-block;
+    margin: 40px 10px;
+}
 
-    justify-content: center;
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;          /* ボタン同士の間隔 */
-    flex-wrap: nowrap;  /* 改行しない */
+/* 2つのボタンを中央に寄せる */
+.form-card{
+    text-align: center;
 }
 
 .edit button{
@@ -173,17 +174,24 @@
     transition:.2s;
 }
 
-/*削除、更新ボタン*/
-.edit .update-btn,
-.edit .delete-btn{
-    width: 120px;
-    height: 40px;
-    white-space: nowrap; /* ボタン内の文字も改行しない */
+
+/* formタグが横幅いっぱいになるのを防ぐ */
+.form-card form{
+    display: inline-block;
 }
 
-/*一覧に戻るボタンエリア*/
-.edit .btn-area .list-btn-area{
-    text-align: center;
+/* 一覧へ戻るボタンは下に配置 */
+.list-btn-area{
+    margin-top: 20px;
+}
 
-    margin-top: 30px;
+/* ボタンサイズを揃える */
+.update-btn,
+.delete-btn,
+.list-btn-area button{
+    width: 180px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
 }
