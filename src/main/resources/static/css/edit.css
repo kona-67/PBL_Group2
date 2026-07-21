@@ -146,10 +146,23 @@
 /*ボタンエリア*/
 /*更新、削除ボタンエリア*/
 /* 更新・削除ボタンを横並び */
-.update-btn-area,
+.update-btn-area{
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+
 .delete-btn-area{
-    display: inline-block;
-    margin: 40px 10px;
+    display: flex;
+    margin-left: 400px;
+    margin-top: 40px;
+}
+
+/* 一覧へ戻るボタンは下に配置 */
+.list-btn-area{
+    display: flex;
+    margin-left: 270px;
+    margin-top: 40px;
 }
 
 /* 2つのボタンを中央に寄せる */
@@ -177,12 +190,7 @@
 
 /* formタグが横幅いっぱいになるのを防ぐ */
 .form-card form{
-    display: inline-block;
-}
-
-/* 一覧へ戻るボタンは下に配置 */
-.list-btn-area{
-    margin-top: 20px;
+    display:block;
 }
 
 /* ボタンサイズを揃える */
