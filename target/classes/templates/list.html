@@ -21,9 +21,9 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    <tr th:each="medicine : ${medicineList}" th:data-id="${medicine.id}" class="row">
-                        <td th:text="${medicine.id}"></td>
-                        <td th:text="${medicine.name}"></td>
+                    <tr th:each="medicine : ${medicineList}" th:data-id="${medicine.medicineId}" class="row">
+                        <td th:text="${medicine.medicineId}"></td>
+                        <td th:text="${medicine.medicine_name}"></td>
                         <td th:text="${medicine.volume}"></td>
                         <td th:text="${medicine.unit}"></td>
                         <td th:text="${medicine.startDay}"></td>

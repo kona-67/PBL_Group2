@@ -42,16 +42,7 @@ public class HomeController {
         return "home";
     }
 
-    // 1. 薬の登録情報一覧画面を表示する
-    @GetMapping("/list") 
-    public String showListPage(Model model) {
-        // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
-        List<Medicine> medicineList = medicineRepository.findAll();
-
-        // ★HTMLにデータを渡す
-        model.addAttribute("medicineList", medicineList);
-        return "list"; // templates/list.html を開く
-    }
+    
 
 //ｓ
 
