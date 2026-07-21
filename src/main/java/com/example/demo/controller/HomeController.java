@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.entity.Medicine;
 import com.example.demo.repository.MedicineRepository;
+import com.example.demo.service.NotificationService;
+import com.example.demo.entity.User;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -16,27 +20,30 @@ public class HomeController {
     @Autowired
     private MedicineRepository medicineRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     // 1. ホーム画面を表示する
     @GetMapping("/home")
-    public String showHomePage(Model model) {
+    public String showHomePage(Model model, HttpSession session) {
 
-        // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<Medicine> medicineList = medicineRepository.findAll();
 
-        // ★HTMLにデータを渡す
         model.addAttribute("medicineList", medicineList);
 
-        return "home"; // templates/home.html を開く
-    }
+        User loginUser = 
+            (User) session.getAttribute("loginUser");
+        // 通知一覧をHTMLへ渡す
+        model.addAttribute(
+            "notificationList",
+            notificationService.getNotificationsByUser(loginUser)
+        );
 
-    // 1. ログイン画面を表示する
-    @GetMapping("/login") 
-    public String showLoginPage() {
-        return "login"; // templates/login.html を開く
+        return "home";
     }
 
     // 1. 薬の登録情報一覧画面を表示する
-    @GetMapping("/list") 
+    @GetMapping("/list1") 
     public String showListPage(Model model) {
         // ★RDSから全データを取ってくる（セレクトSQLが自動で飛ぶ）
         List<Medicine> medicineList = medicineRepository.findAll();
@@ -45,19 +52,6 @@ public class HomeController {
         model.addAttribute("medicineList", medicineList);
         return "list"; // templates/list.html を開く
     }
-    
-    // 1. 薬の登録画面を表示する
-    @GetMapping("/add") 
-    public String showAddPage() {
-        return "add"; // templates/add.html を開く
-    }
-
-    // 1. 服用履歴画面を表示する
-    @GetMapping("/history") 
-    public String showHistoryPage() {
-        return "history"; // templates/history.html を開く
-    }
-
 
 //ｓ
 

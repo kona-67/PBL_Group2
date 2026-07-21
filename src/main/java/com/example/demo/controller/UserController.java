@@ -52,11 +52,9 @@ public class UserController {
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
-
-        /* 
+ 
         // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
         return "redirect:/list-page";
-         */
     }
 
     // 3. 一覧画面を表示する

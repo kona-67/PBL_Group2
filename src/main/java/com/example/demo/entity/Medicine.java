@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -24,9 +24,9 @@ public class Medicine {
     @Column(name = "id") // DBのidと紐づけ
     private Integer medicineId;//薬のID autoIncrement 主キー
 
-    @ManyToOne//一つのUserに対して多数のMedicineが紐づく
+    //@ManyToOne//一つのUserに対して多数のMedicineが紐づく
     @JoinColumn(name = "user_id")//DBのuser_idと紐づけ
-    private User user;//Userオブジェクトの取得
+    private int userId;//User_idの取得
     private String medicine_name;//薬名
     private int volume;//服用量
     private String unit;//薬の単位
