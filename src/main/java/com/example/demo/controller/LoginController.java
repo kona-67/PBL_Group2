@@ -54,11 +54,11 @@ public class LoginController {
                 System.out.println("【判定】一致しました！ログイン成功！");
                 
                 // セッションにログインユーザーの情報を保存
-                session.setAttribute("user", dbUser);
+                session.setAttribute("loginUser", dbUser);
                 
                 return "redirect:/home";
             } else {
-                System.out.println("【判定】パスवायरमेंटが一致しませんでした。");
+                System.out.println("【判定】パスワードが一致しませんでした。");
             }
         } else {
             System.out.println("【判定】このメールアドレスのユーザーはDBにいません。");
@@ -110,7 +110,7 @@ public class LoginController {
         System.out.println("AWSへの新規登録成功！自動ログインします。");
 
         // 自動ログイン状態にしてホーム画面へダイレクト遷移
-        session.setAttribute("user", savedUser);
+        session.setAttribute("loginUser", savedUser);
         
         return "redirect:/home";
     }
