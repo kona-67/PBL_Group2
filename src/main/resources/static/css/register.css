@@ -1,8 +1,55 @@
 /*register.html*/
 /*フッダー*/
+.region{
+
+    margin:0;
+
+    background:#eef7fb;
+
+    font-family:"Yu Gothic",sans-serif;
+}
+
+.region .region-card{
+
+    width:450px;
+    max-width:90%;
+    margin:80px auto;
+
+    background:white;
+
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    padding:40px;
+}
 
 .region h2{
-    text-align: center;
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+/*inputタグ*/
+.region input{
+
+    width:100%;
+    height:45px;
+    padding:0 12px;
+
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+
+    font-size:16px;
+}
+
+.region input:focus{
+
+    outline:none;
+
+    border-color:#142c8b;
+
+    box-shadow:0 0 5px rgba(69, 159, 177, 0.785);
 }
 
 /*emailエリア*/
@@ -64,7 +111,26 @@
     
 }
 
-.region .sendBtn{
-    height: 50px;
-    width: 15vw;
+.region #sendBtn{
+
+    width:30%;
+    height:50px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#4CAF50;
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.region #sendBtn:hover{
+
+    background:#43a047;
+
+    transform:translateY(-2px);
 }
