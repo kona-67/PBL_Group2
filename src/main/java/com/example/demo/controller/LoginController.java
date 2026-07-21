@@ -3,8 +3,8 @@ package com.example.demo.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // 💡 追記
-import org.springframework.security.crypto.password.PasswordEncoder; // 💡 追記
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
-import jakarta.servlet.http.HttpSession; // 💡 追記：セッションを使うために必要
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -23,7 +23,6 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    // 💡 パスワードの暗号化・照合を行うためのエンコーダーを定義します
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // ==========================================
@@ -34,7 +33,6 @@ public class LoginController {
         return "login"; 
     }
 
-    /* */
     // ==========================================
     // 2. ログインボタンが押されたときの処理
     // ==========================================
@@ -49,13 +47,9 @@ public class LoginController {
             User dbUser = userOpt.get();
             System.out.println("DBから見つかったユーザーのメール: " + dbUser.getEmail());
             
-            // 💡 修正：ハッシュ化されたパスワードと一致するかチェック（matchesを使用）
             if (passwordEncoder.matches(form.getPassword(), dbUser.getPasswordHash())) {
                 System.out.println("【判定】一致しました！ログイン成功！");
-                
-                // セッションにログインユーザーの情報を保存
-                session.setAttribute("loginUser", dbUser);
-                
+                session.setAttribute("user", dbUser);
                 return "redirect:/home";
             } else {
                 System.out.println("【判定】パスワードが一致しませんでした。");
@@ -77,22 +71,40 @@ public class LoginController {
     }
 
     // ==========================================
-    // 4. 新規登録ボタンが押されたときの処理（★最終完成版！）
+    // 4. 新規登録ボタンが押されたときの処理（仕様書テスト対応・エラー強化版）
     // ==========================================
     @PostMapping("/user/register")
     public String registerUser(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
+            @RequestParam("passwordConfirm") String passwordConfirm, // 💡 確認用パスワードも受け取ります
             HttpSession session,
             Model model) {
 
-        System.out.println("=== 新規登録処理を開始（確定版） ===");
+        System.out.println("=== 新規登録処理を開始（テスト強化版） ===");
         System.out.println("登録メールアドレス: " + email);
-        System.out.println("届いたパスワード: " + password);
 
-        // メールアドレスの重複チェック
+        // 💡 1. 未入力チェック（テスト仕様書 No.10）
+        if (email == null || email.trim().isEmpty() || password == null || password.isEmpty()) {
+            model.addAttribute("registerError", "入力してください");
+            return "register";
+        }
+
+        // 💡 2. 8文字未満チェック（テスト仕様書 No.11）
+        if (password.length() < 8) {
+            model.addAttribute("registerError", "パスワードは8文字以上で入力してください");
+            return "register";
+        }
+
+        // 💡 3. パスワード一致チェック
+        if (!password.equals(passwordConfirm)) {
+            model.addAttribute("registerError", "パスワードと確認用パスワードが一致しません。");
+            return "register";
+        }
+
+        // 💡 4. メールアドレスの重複チェック（テスト仕様書 No.13）
         if (userRepository.findByEmail(email).isPresent()) {
-            model.addAttribute("registerError", "このメールアドレスは既に登録されています。");
+            model.addAttribute("registerError", "このメールアドレスはすでに登録されています。");
             return "register";
         }
 
@@ -100,7 +112,7 @@ public class LoginController {
         User newUser = new User();
         newUser.setEmail(email);
         
-        // パスワードをしっかりBCryptでハッシュ化して保存！
+        // パスワードをBCryptでハッシュ化して保存！
         String encodedPassword = passwordEncoder.encode(password);
         newUser.setPasswordHash(encodedPassword); 
         newUser.setDisplayName("新規ユーザー"); 
@@ -109,8 +121,8 @@ public class LoginController {
         User savedUser = userRepository.save(newUser);
         System.out.println("AWSへの新規登録成功！自動ログインします。");
 
-        // 自動ログイン状態にしてホーム画面へダイレクト遷移
-        session.setAttribute("loginUser", savedUser);
+        // 自動ログイン状態にしてホーム画面へ遷移
+        session.setAttribute("user", savedUser);
         
         return "redirect:/home";
     }
@@ -139,4 +151,3 @@ public class LoginController {
         public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
     }
 }
-

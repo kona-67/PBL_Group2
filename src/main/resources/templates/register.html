@@ -3,38 +3,48 @@
     <head>
         <meta charset="UTF-8">
         <title>新規登録</title>
-        <link rel="stylesheet" th:href="@{/css/register.css}">
+        <link rel="stylesheet" th:href="@{/css/register.css}"><!--th:href="@{/css/register.css}"-->
     </head>
 
     <body class="region">
-        <h2>新規登録</h2>
+        <div class="region-card">
+            <h2>新規登録</h2>
 
-        <form th:action="@{/user/register}" method="post">
+            <form th:action="@{/user/register}" method="post">
+
+            <!-- 💡 ログイン画面と同じエラー表示エリアを追加しました！ -->
+            <div th:if="${registerError}" style="color: red; margin-bottom: 15px;">
+                <p th:text="${registerError}"></p>
+            </div>
 
             <div class="email-area">
                 <label for="email">メールアドレス:</label>
-                <input type="email" id="email" name="email" placeholder="example@example.com" maxlength="255" class="email">
+                <!-- 💡 テストNo.10の「空欄時にエラー」をブラウザで出すため「required」を付けました -->
+                <input type="email" id="email" name="email" placeholder="example@example.com" maxlength="255" class="email" required>
             </div>
 
-            <br><br>
+                <br><br>
 
             <div class="password-area">
                 <label for="password">パスワード:</label>
-                <input type="password" id="password" name="password" placeholder="8文字以上で入力" minlength="8" class="password">
+                <!-- 💡 「required」を追加 -->
+                <input type="password" id="password" name="password" placeholder="8文字以上で入力" class="password" required>
             </div>
 
-            <br><br>
+                <br><br>
 
             <div class="confirmation-password-area">
-                <label for="password">確認用:</label>
-                <input type="password" id="password" name="password" placeholder="8文字以上で入力" minlength="8" class="confirmation-password">
+                <label for="passwordConfirm">確認用:</label>
+                <!-- 💡 name属性を重複していた "password" から "passwordConfirm" に正しく修正し、「required」を追加しました -->
+                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="8文字以上で入力" class="confirmation-password" required>
             </div>
 
-            <br><br>
-            <div class="sendBtn-area">
-                <button type="submit" class="sendBtn">送信</button>
-            </div>
+                <br><br>
+                <div class="sendBtn-area">
+                    <button type="submit" id="sendBtn" class="sendBtn">送信</button>
+                </div>
 
-        </form>
+            </form>
+        </div>
     </body>
 </html>
