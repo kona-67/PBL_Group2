@@ -25,7 +25,7 @@ public class Medicine {
     private Integer medicineId;//薬のID autoIncrement 主キー
 
     //@ManyToOne//一つのUserに対して多数のMedicineが紐づく
-    @JoinColumn(name = "user_id")//DBのuser_idと紐づけ
+    @Column(name = "user_id")//DBのuser_idと紐づけ
     private int userId;//User_idの取得
     private String medicine_name;//薬名
     private int volume;//服用量
