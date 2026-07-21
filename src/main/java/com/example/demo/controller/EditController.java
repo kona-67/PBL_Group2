@@ -34,13 +34,13 @@ public class EditController {
         // そのまま save すれば UPDATE になる
         medicineRepository.save(medicine);
 
-        return "redirect:/list-page";
+        return "redirect:/list";
     }
 
     // 削除処理
     @PostMapping("/delete/{id}")
     public String deleteMedicine(@PathVariable("id") Integer id) {
         medicineRepository.deleteById(id);
-        return "redirect:/list-page";
+        return "redirect:/list";
     }
 }
