@@ -44,7 +44,6 @@ public class UserController {
             return "test"; //HTMLを指定してreturnでそのHTMLページに遷移させる
         }
 
-
         // 画面の入力データを、DB保存用のEntityにコピーする
         User user = new User();             //Userインスタンスを作成
         user.setDisplayName(userForm.getName()); // 💡 nameの代わりにdisplayNameにセットする
@@ -52,9 +51,11 @@ public class UserController {
 
         // ★ここで実際にRDSへデータを保存（インサートSQLが自動で飛ぶ）
         userRepository.save(user);
- 
+
+         
         // 登録が終わったら、一覧表示画面にリダイレクト（移動）する
         return "redirect:/list-page";
+        
     }
 
     // 3. 一覧画面を表示する
