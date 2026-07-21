@@ -5,6 +5,21 @@
     font-family:"Yu Gothic",sans-serif;
 }
 
+/*form-card*/
+.add .form-card{
+
+    width: 900px;
+    max-width: 90%;
+
+    margin: 50px auto;
+
+    background: white;
+
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    padding: 40px;
+}
+
 /*入力エリア*/
 .add .form-area{
     display: flex;
@@ -45,13 +60,7 @@
 .add .left-area,
 .add .right-area{
 
-    background:white;
-
-    border-radius:15px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
-
-    padding:30px;
+    flex:1;
 }
 
 /*薬名入力エリア*/
