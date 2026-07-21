@@ -213,11 +213,8 @@ if(notificationForm){
 /* ここまで */
 
 /* ここから list.htmlの処理 */
-const moveEdit = document.getElementById("tableBody");
-
-if(moveEdit){
-    moveEdit.addEventListener("DOMContentLoaded", () => {
-    const rows = moveEdit.querySelectorAll("#tableBody .row");
+document.addEventListener("DOMContentLoaded", () => {
+    const rows = document.querySelectorAll("#tableBody .row");
 
     rows.forEach(row => {
         row.addEventListener("click", () => {
@@ -226,7 +223,7 @@ if(moveEdit){
         });
     });
 });
-}
+
 /* ここまで */
 
 /* ここからlogin.html */
