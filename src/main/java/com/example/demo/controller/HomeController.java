@@ -32,7 +32,7 @@ public class HomeController {
         model.addAttribute("medicineList", medicineList);
 
         User loginUser = 
-            (User) session.getAttribute("loginUser");
+            (User) session.getAttribute("user");
         // 通知一覧をHTMLへ渡す
         model.addAttribute(
             "notificationList",

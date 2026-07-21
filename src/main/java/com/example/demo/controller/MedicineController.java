@@ -57,7 +57,7 @@ public class MedicineController {
         }
 
         //sessionからログインユーザーを取得
-        User loginUser = (User) session.getAttribute("loginUser");
+        User loginUser = (User) session.getAttribute("user");
 
         // 画面の入力データを、DB保存用のEntityにコピーする
         Medicine medicine = new Medicine();             //Medicineインスタンスを作成
@@ -106,7 +106,7 @@ public class MedicineController {
         public String showListPage(Model model) {
 
         // ★ログインユーザーをセッションから取得
-        User loginUser = (User) session.getAttribute("loginUser");
+        User loginUser = (User) session.getAttribute("user");
 
         // ★ログインユーザーの user_id に一致するデータだけ取得
         List<Medicine> medicineList = medicineRepository.findByUserId(loginUser.getUserId());
